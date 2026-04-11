@@ -33,14 +33,14 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SEO-01      |       | Open   |
-| SEO-02      |       | Open   |
-| SEO-03      |       | Open   |
-| CONT-01     |       | Open   |
-| CONT-02     |       | Open   |
-| CONT-03     |       | Open   |
-| GATE-01     |       | Open   |
-| GATE-02     |       | Open   |
-| GATE-03     |       | Open   |
-| ADMIN-01    |       | Open   |
-| ADMIN-02    |       | Open   |
+| SEO-01      | 1     | Open   |
+| SEO-02      | 1     | Open   |
+| SEO-03      | 1     | Open   |
+| CONT-01     | 1     | Open   |
+| CONT-02     | 1     | Open   |
+| CONT-03     | 1     | Open   |
+| GATE-01     | 2     | Open   |
+| GATE-02     | 2     | Open   |
+| GATE-03     | 2     | Open   |
+| ADMIN-01    | 3     | Open   |
+| ADMIN-02    | 3     | Open   |
