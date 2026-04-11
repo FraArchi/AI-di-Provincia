@@ -5,7 +5,7 @@
 **Nome:** AI di Provincia  
 **Tagline:** "L'intelligenza artificiale vista da chi vive lontano dai centri tecnologici"  
 **Tipo:** Blog/Piattaforma di contenuti  
-**Stack:** React + TypeScript + Vite + Tailwind CSS + Supabase
+**Stack:** React + TypeScript + Vite + Tailwind CSS + Markdown
 
 ---
 
@@ -19,7 +19,7 @@
 - **Routing:** State-based (no React Router, gestione manuale in App.tsx)
 
 ### Backend
-- **Servizio:** Supabase 2.57.4 (PostgreSQL as a Service)
+- **Servizio:** Markdown 2.57.4 (PostgreSQL as a Service)
 - **Auth:** Row Level Security (RLS) abilitata
 - **Accesso:** Public read-only per utenti anonimi
 
@@ -37,12 +37,12 @@ AI-di-Provincia/
 │   │   ├── ArticlePage.tsx     # Pagina singolo articolo
 │   │   └── AboutPage.tsx       # Pagina "Chi sono" (placeholder)
 │   ├── lib/
-│   │   └── supabase.ts         # Client Supabase + interfaccia Article
+│   │   └── posts.ts         # Interfaccia Article e utility Markdown
 │   ├── App.tsx                 # Componente root con routing
 │   ├── main.tsx                # Entry point React
 │   ├── index.css               # Stili globali + Tailwind
 │   └── vite-env.d.ts           # Type declarations Vite
-├── supabase/
+├── posts/
 │   └── migrations/
 │       └── 20260319221902_create_articles_table.sql
 ├── .bolt/                      # Configurazione Bolt.new
@@ -80,8 +80,8 @@ theme: {
 ### Environment Variables Richieste
 Creare file `.env` nella root:
 ```env
-VITE_SUPABASE_URL=<supabase-project-url>
-VITE_SUPABASE_ANON_KEY=<supabase-anon-key>
+# No backend keys required anymore
+
 ```
 
 ---
@@ -115,7 +115,7 @@ VITE_SUPABASE_ANON_KEY=<supabase-anon-key>
 - Renderizza condizionalmente: HomePage, ArticlePage, AboutPage
 
 ### HomePage.tsx
-- Fetch articoli da Supabase (ORDER BY published_date DESC)
+- Fetch articoli da Markdown (ORDER BY published_date DESC)
 - Mostra articolo **featured** in evidenza
 - Griglia 2 colonne per altri articoli
 - Formattazione date in italiano (`it-IT`)
@@ -171,7 +171,7 @@ npm run typecheck  # Type checking TypeScript
 ## 🎯 Flusso di Lavoro
 
 ### Aggiungere un Nuovo Articolo
-1. Inserire record nella tabella `articles` su Supabase
+1. Inserire record nella tabella `articles` su Markdown
 2. Impostare `slug` univoco (usato per routing)
 3. Impostare `is_featured = true` per evidenziare in homepage
 4. Scrivere `content` con sintassi markdown (usa `## ` per paragrafi)
@@ -191,9 +191,9 @@ npm run typecheck  # Type checking TypeScript
 
 ## 🔍 Pattern di Codice
 
-### Fetch Dati da Supabase
+### Fetch Dati da Markdown
 ```typescript
-const { data, error } = await supabase
+const articles = await getAllPosts();
   .from('articles')
   .select('*')
   .order('published_date', { ascending: false });
@@ -201,7 +201,7 @@ const { data, error } = await supabase
 
 ### Fetch Singolo Articolo
 ```typescript
-const { data, error } = await supabase
+const articles = await getAllPosts();
   .from('articles')
   .select('*')
   .eq('slug', slug)
@@ -234,7 +234,7 @@ if (loading) return <div>Caricamento...</div>;
 
 ## 📝 Note Importanti
 
-1. **Nessun backend custom:** Tutto il backend è gestito da Supabase
+1. **Nessun backend custom:** Tutto il backend è gestito da Markdown
 2. **Nessuna auth implementata:** Solo lettura pubblica
 3. **Nessun CMS:** Gli articoli si inseriscono direttamente nel DB
 4. **Markdown semplice:** Il contenuto usa `## ` per paragrafi, no parser markdown completo
@@ -251,7 +251,8 @@ if (loading) return <div>Caricamento...</div>;
   "typescript": "^5.5.3",
   "vite": "^5.4.2",
   "tailwindcss": "^3.4.1",
-  "@supabase/supabase-js": "^2.57.4",
+  "gray-matter": "^4.0.3",
+  "react-markdown": "^10.1.0",
   "lucide-react": "^0.344.0"
 }
 ```
@@ -266,7 +267,7 @@ if (loading) return <div>Caricamento...</div>;
 | Aggiungere pagina | `src/components/` + `App.tsx` |
 | Modificare header/footer | `src/components/Header.tsx` o `Footer.tsx` |
 | Cambiare query dati | `src/components/*.tsx` (dentro useEffect) |
-| Modificare schema DB | `supabase/migrations/` + dashboard Supabase |
+| Modificare schema DB | `posts/migrations/` + cartella posts |
 | Aggiornare env vars | File `.env` (non commitato) |
 
 ---

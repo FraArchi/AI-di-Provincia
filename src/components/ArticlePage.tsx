@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { supabase, Article } from '../lib/supabase';
+import ReactMarkdown from 'react-markdown';
+import { Article, getPostBySlug } from '../lib/posts';
 
 interface ArticlePageProps {
   slug: string;
@@ -16,18 +17,14 @@ export default function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
   }, [slug]);
 
   async function loadArticle() {
-    const { data, error } = await supabase
-      .from('articles')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
-
-    if (error) {
-      console.error('Error loading article:', error);
-    } else {
+    try {
+      const data = await getPostBySlug(slug);
       setArticle(data);
+    } catch (error) {
+      console.error('Error loading article:', error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   const formatDate = (dateString: string) => {
@@ -36,24 +33,6 @@ export default function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
-    });
-  };
-
-  const formatContent = (content: string) => {
-    const paragraphs = content.split('\n\n');
-    return paragraphs.map((para, index) => {
-      if (para.startsWith('## ')) {
-        return (
-          <h2 key={index} className="text-2xl font-serif font-bold text-gray-900 mt-12 mb-6">
-            {para.replace('## ', '')}
-          </h2>
-        );
-      }
-      return (
-        <p key={index} className="text-lg text-gray-800 leading-relaxed mb-6">
-          {para}
-        </p>
-      );
     });
   };
 
@@ -115,7 +94,14 @@ export default function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
           </div>
 
           <div className="article-content">
-            {formatContent(article.content)}
+            <ReactMarkdown 
+              components={{
+                h2: ({node, ...props}) => <h2 className="text-2xl font-serif font-bold text-gray-900 mt-12 mb-6" {...props} />,
+                p: ({node, ...props}) => <p className="text-lg text-gray-800 leading-relaxed mb-6" {...props} />
+              }}
+            >
+              {article.content}
+            </ReactMarkdown>
           </div>
         </article>
 

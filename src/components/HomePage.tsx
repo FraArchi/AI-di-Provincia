@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { supabase, Article } from '../lib/supabase';
+import ReactMarkdown from 'react-markdown';
+import { Article, getAllPosts } from '../lib/posts';
 
 interface HomePageProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -14,17 +15,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   }, []);
 
   async function loadArticles() {
-    const { data, error } = await supabase
-      .from('articles')
-      .select('*')
-      .order('published_date', { ascending: false });
-
-    if (error) {
-      console.error('Error loading articles:', error);
-    } else {
+    try {
+      const data = await getAllPosts();
       setArticles(data || []);
+    } catch (error) {
+      console.error('Error loading articles:', error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   const formatDate = (dateString: string) => {
@@ -81,20 +79,15 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <div className="prose prose-lg max-w-none mb-8 text-gray-800 leading-relaxed">
-              {featuredArticle.content.split('\n\n').slice(0, 3).map((para, idx) => {
-                if (para.startsWith('## ')) {
-                  return (
-                    <h3 key={idx} className="text-xl font-serif font-bold text-gray-900 mt-6 mb-4">
-                      {para.replace('## ', '')}
-                    </h3>
-                  );
-                }
-                return (
-                  <p key={idx} className="mb-4">
-                    {para}
-                  </p>
-                );
-              })}
+              <ReactMarkdown
+                components={{
+                  h3: ({node, ...props}) => <h3 className="text-xl font-serif font-bold text-gray-900 mt-6 mb-4" {...props} />,
+                  p: ({node, ...props}) => <p className="mb-4" {...props} />,
+                  h2: ({node, ...props}) => <h3 className="text-xl font-serif font-bold text-gray-900 mt-6 mb-4" {...props} /> // mapping h2 to h3 in snippet
+                }}
+              >
+                {featuredArticle.content.split('\n\n').slice(0, 3).join('\n\n')}
+              </ReactMarkdown>
             </div>
 
             <button
