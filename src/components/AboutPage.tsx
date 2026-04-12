@@ -23,16 +23,31 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
           <div className="space-y-6 text-lg text-gray-800 leading-relaxed">
             <p>
-              Questa pagina è in costruzione.
+              Mi chiamo Francesco. Non sono un esperto di AI, non lavoro in una tech company, non vivo a Milano o a San Francisco. Vivo in provincia, davanti a un computer, e uso l'AI tutti i giorni da quasi cinque anni.
             </p>
 
             <p>
-              AI di Provincia è un blog che racconta l'intelligenza artificiale dal punto di vista
-              di chi vive lontano dai centri tecnologici.
+              Non l'ho studiata. L'ho vissuta — da quando ero un ragazzino, quando ChatGPT era appena uscito e quasi nessuno ne parlava ancora. Nel tempo è diventata una presenza quotidiana, quasi inconscia. Come controllare il meteo, ma più utile.
             </p>
 
             <p>
-              Presto ci sarà di più.
+              A un certo punto ho capito una cosa: sapevo più di quanto pensassi. Non in modo accademico, non con certificazioni o corsi. Ma con qualcosa che vale altrettanto — l'esperienza di chi c'era dall'inizio e ha seguito tutto, giorno per giorno, senza che nessuno gliel'avesse chiesto.
+            </p>
+
+            <p>
+              AI di Provincia è nata da quella consapevolezza. E da una domanda semplice: perché se ne parla sempre tra addetti ai lavori, guru e apocalittici — e mai tra la gente normale?
+            </p>
+
+            <p>
+              Questo spazio è per chi ha sentito parlare di AI al telegiornale e non sa da dove iniziare. Per chi la usa già ma non si sente "abbastanza esperto" per dirlo. Per chi vive lontano dai centri tecnologici ma vuole capire lo stesso.
+            </p>
+
+            <p>
+              Scrivo per me, prima di tutto. Ma spero che qualcosa di quello che scrivo ti appartenga anche un po'.
+            </p>
+
+            <p className="font-semibold">
+              — Francesco Archidiacono
             </p>
           </div>
         </article>
