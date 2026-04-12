@@ -1,7 +1,7 @@
 ---
 title: "Un altro articolo"
 subtitle: "Più tecnologia per tutti"
-author: "Luigi Bianchi"
+author: "Francesco Archidiacono"
 category: "Società"
 published_date: "2026-03-18T10:00:00.000Z"
 is_featured: false
