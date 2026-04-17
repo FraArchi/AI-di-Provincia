@@ -2,8 +2,8 @@
 title: "Buon lavoro, ai nostri amici artificiali"
 subtitle: "Mia madre, il fuoco nel camino, e l'intelligenza artificiale"
 author: "Francesco Archidiacono"
-category: "Interviste"
-published_date: "2026-04-11"
+category: "Voci dal territorio"
+published_date: "2026-04-17T15:00:00.000Z"
 is_featured: true
 slug: "intervista-monastera"
 ---

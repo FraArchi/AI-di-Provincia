@@ -4,7 +4,7 @@ subtitle: "Intervista a Marco, che tra una rosetta e l'altra ha scoperto come ot
 author: "Francesco"
 category: "Voci dal territorio"
 published_date: "2026-04-16T10:00:00.000Z"
-is_featured: true
+is_featured: false
 slug: "panettiere-chatgpt-turni"
 ---
 
