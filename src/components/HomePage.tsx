@@ -100,34 +100,70 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         )}
 
         {otherArticles.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-12">
-            {otherArticles.map((article) => (
-              <article key={article.id} className="border-t border-gray-200 pt-8">
-                <button
-                  onClick={() => onNavigate('article', article.slug)}
-                  className="text-left w-full group"
-                >
-                  {article.category && (
-                    <span className="text-xs font-medium text-accent uppercase tracking-wide mb-3 block">
-                      {article.category}
-                    </span>
-                  )}
-                  <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3 group-hover:text-accent transition-colors">
-                    {article.title}
-                  </h3>
-                  {article.subtitle && (
-                    <p className="text-base text-gray-600 mb-4">
-                      {article.subtitle}
-                    </p>
-                  )}
-                  <div className="flex gap-3 text-xs text-gray-500">
-                    <span>{article.author}</span>
-                    <span>·</span>
-                    <span>{formatDate(article.published_date)}</span>
-                  </div>
-                </button>
-              </article>
-            ))}
+          <div className="grid md:grid-cols-3 gap-12 border-t border-gray-200 pt-12">
+            
+            {/* Feed Centrale (Articoli Principali) - 2/3 width */}
+            <div className="md:col-span-2">
+              <h3 className="text-xl font-bold font-serif text-gray-900 mb-8 border-b pb-2">Articoli Recenti</h3>
+              <div className="grid sm:grid-cols-2 gap-8">
+                {otherArticles.filter(a => a.category !== "Il Bollettino dell'IA").map((article) => (
+                  <article key={article.id} className="group">
+                    <button
+                      onClick={() => onNavigate('article', article.slug)}
+                      className="text-left w-full"
+                    >
+                      {article.category && (
+                        <span className="text-xs font-medium text-accent uppercase tracking-wide mb-2 block">
+                          {article.category}
+                        </span>
+                      )}
+                      <h4 className="text-xl font-serif font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-snug">
+                        {article.title}
+                      </h4>
+                      {article.subtitle && (
+                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                          {article.subtitle}
+                        </p>
+                      )}
+                      <div className="flex gap-2 text-xs text-gray-500">
+                        <span>{article.author}</span>
+                        <span>·</span>
+                        <span>{formatDate(article.published_date)}</span>
+                      </div>
+                    </button>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar Laterale (Il Bollettino dell'IA) - 1/3 width */}
+            <div className="md:col-span-1 bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <h3 className="text-lg font-bold font-serif text-gray-900 mb-6 flex items-center gap-2">
+                <span className="text-accent">📡</span> Il Bollettino dell'IA
+              </h3>
+              <div className="space-y-6">
+                {otherArticles.filter(a => a.category === "Il Bollettino dell'IA").slice(0, 5).map((article) => (
+                  <article key={article.id} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                     <button
+                      onClick={() => onNavigate('article', article.slug)}
+                      className="text-left w-full group"
+                    >
+                      <h4 className="text-base font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
+                        {article.title}
+                      </h4>
+                      <div className="text-xs text-gray-500 mt-2">
+                        {formatDate(article.published_date)}
+                      </div>
+                    </button>
+                  </article>
+                ))}
+                
+                {otherArticles.filter(a => a.category === "Il Bollettino dell'IA").length === 0 && (
+                  <p className="text-sm text-gray-500 italic">Nessun bollettino recente.</p>
+                )}
+              </div>
+            </div>
+
           </div>
         )}
       </div>

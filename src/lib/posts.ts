@@ -43,9 +43,9 @@ export async function getAllPosts(): Promise<Article[]> {
       author: data.author || 'Unknown',
       category: data.category || null,
       content: content.trim(),
-      published_date: data.published_date || new Date().toISOString(),
+      published_date: data.published_date ? new Date(data.published_date).toISOString() : new Date().toISOString(),
       is_featured: data.is_featured || false,
-      created_at: data.published_date || new Date().toISOString(),
+      created_at: data.published_date ? new Date(data.published_date).toISOString() : new Date().toISOString(),
     });
   }
 
