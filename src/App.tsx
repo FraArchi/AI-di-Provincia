@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import ArticlePage from './components/ArticlePage';
 import AboutPage from './components/AboutPage';
+import RubricheSidebar from './components/RubricheSidebar';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>('home');
@@ -18,8 +19,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
       <Header onNavigate={handleNavigate} currentPage={currentPage} />
+      <RubricheSidebar onNavigate={handleNavigate} />
       <main className="flex-grow">
         {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
         {currentPage === 'article' && <ArticlePage slug={currentSlug} onNavigate={handleNavigate} />}
