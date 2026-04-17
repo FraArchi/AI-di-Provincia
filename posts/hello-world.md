@@ -4,7 +4,7 @@ subtitle: "Un sottotitolo molto interessante"
 author: "Mario Rossi"
 category: "Tecnologia"
 published_date: "2026-03-20T10:00:00.000Z"
-is_featured: true
+is_featured: false
 slug: "il-mio-primo-articolo"
 ---
 
