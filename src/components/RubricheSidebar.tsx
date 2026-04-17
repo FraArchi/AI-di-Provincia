@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { X, ChevronRight } from 'lucide-react';
 import { Article, getAllPosts } from '../lib/posts';
 
 interface RubricheSidebarProps {
   onNavigate: (page: string, slug?: string) => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function RubricheSidebar({ onNavigate }: RubricheSidebarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function RubricheSidebar({ onNavigate, isOpen, onClose }: RubricheSidebarProps) {
   const [rubriche, setRubriche] = useState<{ [key: string]: Article }>({});
 
   useEffect(() => {
@@ -29,21 +30,11 @@ export default function RubricheSidebar({ onNavigate }: RubricheSidebarProps) {
 
   return (
     <>
-      {/* Pulsante fisso a destra per aprire la sidebar */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed top-1/3 right-0 bg-gray-900 text-white py-4 px-2 rounded-l-lg shadow-xl z-40 hover:bg-accent transition-colors flex flex-col items-center gap-3 border border-r-0 border-white/10"
-        title="Esplora le Rubriche"
-      >
-        <Menu size={20} />
-        <span className="[writing-mode:vertical-lr] font-medium tracking-widest text-xs uppercase rotate-180">Rubriche</span>
-      </button>
-
       {/* Overlay scuro quando aperto */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 transition-opacity"
-          onClick={() => setIsOpen(false)}
+          onClick={onClose}
         />
       )}
 
@@ -56,7 +47,7 @@ export default function RubricheSidebar({ onNavigate }: RubricheSidebarProps) {
         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
           <h2 className="text-xl font-serif font-bold text-gray-900">Tutte le Rubriche</h2>
           <button 
-            onClick={() => setIsOpen(false)}
+            onClick={onClose}
             className="text-gray-400 hover:text-accent transition-colors bg-white p-1 rounded-full shadow-sm"
           >
             <X size={20} />
@@ -74,7 +65,7 @@ export default function RubricheSidebar({ onNavigate }: RubricheSidebarProps) {
               {/* Ultimo articolo della rubrica (massimo 1) */}
               <button
                 onClick={() => {
-                  setIsOpen(false);
+                  onClose();
                   onNavigate('article', article.slug);
                 }}
                 className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3"
