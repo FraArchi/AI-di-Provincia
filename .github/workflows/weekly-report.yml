@@ -1,0 +1,57 @@
+name: Generate Weekly AI Report
+
+on:
+  schedule:
+    # Runs every Monday at 07:00 UTC
+    - cron: '0 7 * * 1'
+  # Allows manual triggering from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip' # cache pip dependencies
+
+      - name: Install Dependencies
+        working-directory: ./local-brain-report
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate and Publish Report
+        working-directory: ./local-brain-report
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Force vertex global location to avoid litellm routing issues (as seen in local testing)
+          VERTEX_LOCATION: "global"
+        run: |
+          python main.py full --publish --dest ../posts
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action [Bot]"
+          
+          # Only add new posts and the updated sqlite db to git tracking
+          git add posts/
+          # Optional: sync the database to the repo as well
+          git add local-brain-report/brain.db || true
+          
+          # Commit only if there are changes
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "docs(blog): add weekly AI report [skip ci]"
+            git push
+          else
+            echo "No new reports or changes to commit."
+          fi
