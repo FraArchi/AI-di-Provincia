@@ -3,7 +3,7 @@ title: "Ho provato per voi — Prima puntata Dicembre 2022, Vallesaccarda"
 subtitle: "Prime volte con l'AI."
 author: "Francesco Archidiacono"
 category: "Ho provato per voi"
-published_date: "2026-04-14T14:30:00.000Z"
+published_date: "2026-04-18T14:30:00.000Z"
 is_featured: false
 slug: "provato-chatgpt-prima-volta"
 ---
