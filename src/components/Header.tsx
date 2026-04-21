@@ -2,12 +2,11 @@ import { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  onNavigate: (page: string) => void;
   currentPage: string;
   onOpenRubriche: () => void;
 }
 
-export default function Header({ onNavigate, currentPage, onOpenRubriche }: HeaderProps) {
+export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -25,18 +24,18 @@ export default function Header({ onNavigate, currentPage, onOpenRubriche }: Head
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40 relative">
       <div className="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
-        <button
-          onClick={() => onNavigate('home')}
+        <a
+          href="/"
           className="text-2xl font-serif font-bold text-gray-900 hover:text-accent transition-colors"
         >
           AI di Provincia
-        </button>
+        </a>
         
         <div className="flex items-center gap-8 relative" ref={menuRef}>
           {/* Navigazione Desktop */}
           <nav className="hidden md:flex gap-8 items-center">
-            <button
-              onClick={() => onNavigate('home')}
+            <a
+              href="/"
               className={`text-sm font-medium transition-colors ${
                 currentPage === 'home'
                   ? 'text-accent'
@@ -44,9 +43,9 @@ export default function Header({ onNavigate, currentPage, onOpenRubriche }: Head
               }`}
             >
               Home
-            </button>
-            <button
-              onClick={() => onNavigate('about')}
+            </a>
+            <a
+              href="/chi-sono"
               className={`text-sm font-medium transition-colors ${
                 currentPage === 'about'
                   ? 'text-accent'
@@ -54,7 +53,7 @@ export default function Header({ onNavigate, currentPage, onOpenRubriche }: Head
               }`}
             >
               Chi sono
-            </button>
+            </a>
             <button
               onClick={onOpenRubriche}
               className="text-sm font-medium text-gray-600 hover:text-accent transition-colors"
@@ -75,18 +74,20 @@ export default function Header({ onNavigate, currentPage, onOpenRubriche }: Head
           {/* Menu a tendina (Dropdown) */}
           {isMenuOpen && (
             <div className="absolute top-full right-0 mt-4 w-48 bg-white border border-gray-100 rounded-xl shadow-2xl py-2 z-50 flex flex-col overflow-hidden">
-              <button 
-                onClick={() => { onNavigate('home'); setIsMenuOpen(false); }} 
-                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors"
+              <a 
+                href="/"
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors block"
               >
                 Home
-              </button>
-              <button 
-                onClick={() => { onNavigate('about'); setIsMenuOpen(false); }} 
-                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors"
+              </a>
+              <a 
+                href="/chi-sono"
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors block"
               >
                 Chi sono
-              </button>
+              </a>
               <button 
                 onClick={() => { onOpenRubriche(); setIsMenuOpen(false); }} 
                 className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors border-t border-gray-100"

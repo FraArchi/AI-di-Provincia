@@ -1,33 +1,13 @@
-import { useState, useEffect } from 'react';
 import { X, ChevronRight } from 'lucide-react';
-import { Article, getAllPosts } from '../lib/posts';
+import type { CategoryArticle } from './Navigation';
 
 interface RubricheSidebarProps {
-  onNavigate: (page: string, slug?: string) => void;
   isOpen: boolean;
   onClose: () => void;
+  rubriche: CategoryArticle[];
 }
 
-export default function RubricheSidebar({ onNavigate, isOpen, onClose }: RubricheSidebarProps) {
-  const [rubriche, setRubriche] = useState<{ [key: string]: Article }>({});
-
-  useEffect(() => {
-    async function loadRubriche() {
-      const allPosts = await getAllPosts();
-      const grouped: { [key: string]: Article } = {};
-      
-      // Mantiene solo l'ultimo articolo per ogni categoria (essendo l'array già ordinato per data)
-      allPosts.forEach(post => {
-        if (post.category && !grouped[post.category]) {
-          grouped[post.category] = post;
-        }
-      });
-      
-      setRubriche(grouped);
-    }
-    loadRubriche();
-  }, []);
-
+export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheSidebarProps) {
   return (
     <>
       {/* Overlay scuro quando aperto */}
@@ -55,26 +35,24 @@ export default function RubricheSidebar({ onNavigate, isOpen, onClose }: Rubrich
         </div>
 
         <div className="p-6 overflow-y-auto flex-grow space-y-8">
-          {Object.entries(rubriche).map(([category, article]) => (
-            <div key={category} className="group">
+          {rubriche.map((article) => (
+            <div key={article.category} className="group">
               {/* Titolo della rubrica */}
               <h3 className="text-xs font-bold text-accent uppercase tracking-widest mb-3 border-l-2 border-accent pl-3">
-                {category}
+                {article.category}
               </h3>
               
               {/* Ultimo articolo della rubrica (massimo 1) */}
-              <button
-                onClick={() => {
-                  onClose();
-                  onNavigate('article', article.slug);
-                }}
-                className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3"
+              <a
+                href={`/post/${article.slug}`}
+                onClick={onClose}
+                className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3 block"
               >
                 <ChevronRight size={16} className="text-gray-300 mt-1 flex-shrink-0 group-hover:text-accent transition-colors" />
-                <p className="text-sm font-serif font-medium text-gray-800 leading-snug group-hover:text-accent transition-colors">
+                <p className="text-sm font-serif font-medium text-gray-800 leading-snug group-hover:text-accent transition-colors m-0">
                   {article.title}
                 </p>
-              </button>
+              </a>
             </div>
           ))}
         </div>
