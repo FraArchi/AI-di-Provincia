@@ -77,31 +77,70 @@ const getExcerpt = (body: string) => {
         )}
 
         {otherArticles.length > 0 && (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {otherArticles.map(article => (
-              <article class="flex flex-col">
-                {article.data.category && (
-                  <span class="text-xs font-bold text-accent uppercase tracking-widest mb-3">
-                    {article.data.category}
-                  </span>
+          <div class="grid md:grid-cols-3 gap-12 border-t border-gray-200 pt-12">
+            
+            {/* Feed Centrale (Articoli Principali) - 2/3 width */}
+            <div class="md:col-span-2">
+              <h3 class="text-xl font-bold font-serif text-gray-900 mb-8 border-b pb-2">Articoli Recenti</h3>
+              <div class="grid sm:grid-cols-2 gap-8">
+                {otherArticles.filter(a => a.data.category !== "Il Bollettino dell'IA").map((article) => (
+                  <article class="group">
+                    <a
+                      href={`/post/${article.data.slug || article.id}`}
+                      class="text-left w-full block"
+                    >
+                      {article.data.category && (
+                        <span class="text-xs font-medium text-accent uppercase tracking-wide mb-2 block">
+                          {article.data.category}
+                        </span>
+                      )}
+                      <h4 class="text-xl font-serif font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-snug">
+                        {article.data.title}
+                      </h4>
+                      {article.data.subtitle && (
+                        <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                          {article.data.subtitle}
+                        </p>
+                      )}
+                      <div class="flex gap-2 text-xs text-gray-500">
+                        <span>{article.data.author}</span>
+                        <span>&middot;</span>
+                        <span>{formatDate(article.data.published_date)}</span>
+                      </div>
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar Laterale (Il Bollettino dell'IA) - 1/3 width */}
+            <div class="md:col-span-1 bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <h3 class="text-lg font-bold font-serif text-gray-900 mb-6 flex items-center gap-2">
+                <span class="text-accent">📡</span> Il Bollettino dell'IA
+              </h3>
+              <div class="space-y-6">
+                {otherArticles.filter(a => a.data.category === "Il Bollettino dell'IA").slice(0, 5).map((article) => (
+                  <article class="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                     <a
+                      href={`/post/${article.data.slug || article.id}`}
+                      class="text-left w-full group block"
+                    >
+                      <h4 class="text-base font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
+                        {article.data.title}
+                      </h4>
+                      <div class="text-xs text-gray-500 mt-2">
+                        {formatDate(article.data.published_date)}
+                      </div>
+                    </a>
+                  </article>
+                ))}
+                
+                {otherArticles.filter(a => a.data.category === "Il Bollettino dell'IA").length === 0 && (
+                  <p class="text-sm text-gray-500 italic">Nessun bollettino recente.</p>
                 )}
-                <h3 class="text-2xl font-serif font-bold text-gray-900 mb-3 leading-snug">
-                  <a href={`/post/${article.data.slug || article.id}`} class="hover:text-accent transition-colors">
-                    {article.data.title}
-                  </a>
-                </h3>
-                {article.data.subtitle && (
-                  <p class="text-gray-600 mb-4 line-clamp-3">
-                    {article.data.subtitle}
-                  </p>
-                )}
-                <div class="mt-auto pt-4 flex gap-3 text-xs text-gray-500 font-medium">
-                  <span>{article.data.author}</span>
-                  <span>&middot;</span>
-                  <span>{formatDate(article.data.published_date)}</span>
-                </div>
-              </article>
-            ))}
+              </div>
+            </div>
+
           </div>
         )}
       </div>
