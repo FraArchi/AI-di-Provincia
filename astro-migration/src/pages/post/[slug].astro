@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer.astro';
+import { getRubriche } from '../../lib/utils';
+import { ArrowLeft } from 'lucide-react';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.data.slug || post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const rubriche = await getRubriche();
+
+const formatDate = (dateString: string | Date) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+---
+
+<Layout title={`${post.data.title} - AI di Provincia`} description={post.data.subtitle || ''}>
+  <Navigation client:load currentPage="article" rubriche={rubriche} />
+  
+  <main class="flex-grow">
+    <div class="bg-white">
+      <div class="max-w-3xl mx-auto px-6 py-16">
+        <a
+          href="/"
+          class="text-sm text-gray-600 hover:text-accent transition-colors flex items-center gap-2 mb-12 inline-flex"
+        >
+          <ArrowLeft size={16} />
+          Torna alla home
+        </a>
+
+        <article>
+          {post.data.category && (
+            <span class="text-sm font-medium text-accent uppercase tracking-wide mb-6 block">
+              {post.data.category}
+            </span>
+          )}
+
+          <h1 class="text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+            {post.data.title}
+          </h1>
+
+          {post.data.subtitle && (
+            <p class="text-2xl text-gray-600 mb-8 leading-relaxed">
+              {post.data.subtitle}
+            </p>
+          )}
+
+          <div class="flex gap-4 text-sm text-gray-500 mb-12 pb-8 border-b border-gray-200">
+            <span class="font-medium">{post.data.author}</span>
+            <span>&middot;</span>
+            <span>{formatDate(post.data.published_date)}</span>
+          </div>
+
+          <div class="article-content prose prose-lg max-w-none text-gray-800 leading-relaxed mb-6">
+            <Content />
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

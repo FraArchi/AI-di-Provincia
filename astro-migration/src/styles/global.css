@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #8b1a1a;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --text-5xl: 3rem; /* Just standard if we need */
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.article-content p {
+  font-size: 1.125rem; /* text-lg */
+  color: #1f2937; /* text-gray-800 */
+  line-height: 1.75; /* leading-relaxed */
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.article-content h2 {
+  font-size: 1.5rem; /* text-2xl */
+  font-family: 'Playfair Display', serif; /* font-serif */
+  font-weight: 700; /* font-bold */
+  color: #111827; /* text-gray-900 */
+  margin-top: 3rem; /* mt-12 */
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.article-content h3 {
+  font-size: 1.25rem; /* text-xl */
+  font-family: 'Playfair Display', serif; /* font-serif */
+  font-weight: 700; /* font-bold */
+  color: #111827; /* text-gray-900 */
+  margin-top: 1.5rem; /* mt-6 */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.excerpt-content p {
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.excerpt-content h2,
+.excerpt-content h3 {
+  font-size: 1.25rem; /* text-xl */
+  font-family: 'Playfair Display', serif; /* font-serif */
+  font-weight: 700; /* font-bold */
+  color: #111827; /* text-gray-900 */
+  margin-top: 1.5rem; /* mt-6 */
+  margin-bottom: 1rem; /* mb-4 */
+}

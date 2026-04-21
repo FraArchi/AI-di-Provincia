@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer.astro';
+import { getRubriche } from '../lib/utils';
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const rubriche = await getRubriche();
+const posts = await getCollection('posts');
+
+const sortedPosts = posts.sort((a, b) => new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf());
+
+const featuredArticle = sortedPosts.find(a => a.data.is_featured);
+const otherArticles = sortedPosts.filter(a => !a.data.is_featured);
+
+const formatDate = (dateString: string | Date) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+const getExcerpt = (body: string) => {
+  const parts = body.split('\n\n').slice(0, 3).join('\n\n');
+  return marked.parse(parts);
+};
+---
+
+<Layout title="AI di Provincia">
+  <Navigation client:load currentPage="home" rubriche={rubriche} />
+  
+  <main class="flex-grow">
+    <div class="bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="mb-16 pb-8 border-b border-gray-200">
+          <h1 class="text-5xl font-serif font-bold text-gray-900 mb-3">
+            AI di Provincia
+          </h1>
+          <p class="text-xl text-gray-600">
+            L'intelligenza artificiale vista da chi vive lontano dai centri tecnologici
+          </p>
+        </div>
+
+        {featuredArticle && (
+          <article class="mb-20">
+            {featuredArticle.data.category && (
+              <span class="text-sm font-medium text-accent uppercase tracking-wide mb-4 block">
+                {featuredArticle.data.category}
+              </span>
+            )}
+            <h2 class="text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight">
+              {featuredArticle.data.title}
+            </h2>
+            {featuredArticle.data.subtitle && (
+              <p class="text-2xl text-gray-600 mb-8 leading-relaxed">
+                {featuredArticle.data.subtitle}
+              </p>
+            )}
+            <div class="flex gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-200">
+              <span class="font-medium">{featuredArticle.data.author}</span>
+              <span>&middot;</span>
+              <span>{formatDate(featuredArticle.data.published_date)}</span>
+            </div>
+
+            <div class="excerpt-content max-w-none mb-8 text-gray-800 leading-relaxed text-lg" set:html={getExcerpt(featuredArticle.body || '')}></div>
+
+            <a
+              href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}
+              class="inline-block text-accent font-medium hover:underline transition-colors"
+            >
+              Leggi l'articolo completo &rarr;
+            </a>
+          </article>
+        )}
+
+        {otherArticles.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {otherArticles.map(article => (
+              <article class="flex flex-col">
+                {article.data.category && (
+                  <span class="text-xs font-bold text-accent uppercase tracking-widest mb-3">
+                    {article.data.category}
+                  </span>
+                )}
+                <h3 class="text-2xl font-serif font-bold text-gray-900 mb-3 leading-snug">
+                  <a href={`/post/${article.data.slug || article.id}`} class="hover:text-accent transition-colors">
+                    {article.data.title}
+                  </a>
+                </h3>
+                {article.data.subtitle && (
+                  <p class="text-gray-600 mb-4 line-clamp-3">
+                    {article.data.subtitle}
+                  </p>
+                )}
+                <div class="mt-auto pt-4 flex gap-3 text-xs text-gray-500 font-medium">
+                  <span>{article.data.author}</span>
+                  <span>&middot;</span>
+                  <span>{formatDate(article.data.published_date)}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
