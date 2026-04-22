@@ -1,8 +1,8 @@
 ---
 title: "Settimana 15: Tra nuovi modelli e vecchi problemi di connessione"
 subtitle: "Cosa significa l'uscita dei nuovi super-modelli di linguaggio se in officina o in negozio non prende il Wi-Fi?"
-author: "Francesco"
-category: "La settimana in provincia"
+author: "Francesco Archidiacono"
+category: "Dalla Periferia"
 published_date: "2026-04-15T09:00:00.000Z"
 is_featured: false
 slug: "settimana-15-modelli-e-connessione"

@@ -57,3 +57,19 @@ Ecco il dettaglio di ogni rubrica, con frequenza suggerita, format e focus edito
 *   **Format:** Inchiesta breve o case study.
 *   **Focus:** L'impatto reale (o la mancanza di impatto) dell'IA nella Pubblica Amministrazione locale. Un ASL usa l'IA per smistare le code? Un piccolo comune ha fatto un bando per un chatbot? O viceversa, l'incapacità di stare al passo. È giornalismo iper-locale e di estremo valore perché quasi nessuno copre questa nicchia in modo sistematico.
 *   **Posizionamento:** Feed principale / Inchieste.
+=================================================================================================
+=================================================================================================
+### AGGIORNAMENTO & RIEPILOGO
+*   Quindi il quadro rubriche aggiornato diventa:
+
+* Sostrato — filosofia e fondamenti
+* Lettura Lenta — partenza con Camus
+* Voci dal territorio — interviste
+* Dalla Periferia — rassegna settimanale
+* Il Bollettino dell'IA — automatizzato
+* Il Comune più vicino — inchieste PA
+* Manifesto — fixed, non è una rubrica vera
+* Ho provato per voi — esperienze dirette
+* 
+==============================================================================================
+==============================================================================================
