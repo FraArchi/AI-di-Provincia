@@ -69,7 +69,7 @@ const getExcerpt = (body: string) => {
               <span>{formatDate(featuredArticle.data.published_date)}</span>
             </div>
 
-            <div class="excerpt-content max-w-none mb-8 text-gray-800 leading-relaxed text-lg" set:html={getExcerpt(featuredArticle.body || '')}></div>
+            <div class="excerpt-content max-w-none mb-8 text-gray-800 leading-relaxed text-lg line-clamp-6" set:html={getExcerpt(featuredArticle.body || '')}></div>
 
             <a
               href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}
