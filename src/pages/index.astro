@@ -11,7 +11,7 @@ const posts = await getCollection('posts');
 
 const sortedPosts = posts.sort((a, b) => new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf());
 
-const featuredArticle = sortedPosts.find(a => a.data.featured && !a.data.featuredOrder) || sortedPosts.find(a => a.data.featured);
+const featuredArticle = sortedPosts.find(a => a.data.mainFeatured) || sortedPosts.find(a => a.data.featured && !a.data.featuredOrder) || sortedPosts.find(a => a.data.featured);
 const otherArticles = sortedPosts.filter(a => a.id !== featuredArticle?.id);
 
 const sidebarFeaturedPosts = sortedPosts

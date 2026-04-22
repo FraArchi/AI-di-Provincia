@@ -9,6 +9,7 @@ const postsCollection = defineCollection({
     author: z.string(),
     category: z.string().optional().nullable(),
     published_date: z.string().or(z.date()),
+    mainFeatured: z.boolean().optional().default(false),
     featured: z.boolean().optional().default(false),
     featuredOrder: z.number().optional(),
     slug: z.string().optional(),
