@@ -3,7 +3,7 @@ title: "Perché ho creato AI di Provincia"
 subtitle: "Una dichiarazione d'intenti, senza hype"
 author: "Francesco Archidiacono"
 category: "Manifesto"
-published_date: "2026-04-13"
+published_date: "2026-04-17"
 is_featured: false
 slug: "perche-ho-creato-ai-di-provincia"
 ---
