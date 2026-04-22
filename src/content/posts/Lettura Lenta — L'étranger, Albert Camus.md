@@ -4,7 +4,7 @@ subtitle: "Lettura Lenta — L'étranger, Albert Camus"
 author: "Francesco Archidiacono"
 category: "Lettura lenta"
 published_date: "2026-04-23T08:00:00.000Z"
-is_featured: false
+featured: false
 slug: "Lettura-Lenta—L-étranger-Albert-Camus"
 ---
 

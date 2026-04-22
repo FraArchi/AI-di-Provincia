@@ -4,7 +4,8 @@ subtitle: "Mia madre, il fuoco nel camino, e l'intelligenza artificiale"
 author: "Francesco Archidiacono"
 category: "Voci dal territorio"
 published_date: "2026-04-17T15:00:00.000Z"
-is_featured: true
+featured: true
+featuredOrder: 2
 slug: "intervista-monastera"
 ---
 

@@ -4,7 +4,8 @@ subtitle: "Filosofia & AI"
 author: "Francesco Archidiacono"
 category: "Sostrato"
 published_date: "2026-04-21T08:00:00.000Z"
-is_featured: false
+featured: true
+featuredOrder: 1
 slug: "La Filosofia nell'IA"
 ---
 

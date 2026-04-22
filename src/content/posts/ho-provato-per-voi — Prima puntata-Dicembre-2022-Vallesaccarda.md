@@ -4,7 +4,8 @@ subtitle: "Prime volte con l'AI."
 author: "Francesco Archidiacono"
 category: "Ho provato per voi"
 published_date: "2026-04-18T14:30:00.000Z"
-is_featured: false
+featured: true
+featuredOrder: 4
 slug: "provato-chatgpt-prima-volta"
 ---
 

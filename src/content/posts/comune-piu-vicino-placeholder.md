@@ -4,7 +4,7 @@ subtitle: "Un'analisi di come un'amministrazione di 4000 anime sta provando a di
 author: "Francesco"
 category: "Il Comune più vicino"
 published_date: "2026-04-12T11:15:00.000Z"
-is_featured: false
+featured: false
 slug: "comune-valbrembo-bando-chatbot"
 ---
 

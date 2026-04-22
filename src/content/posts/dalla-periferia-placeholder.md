@@ -4,7 +4,7 @@ subtitle: "Cosa significa l'uscita dei nuovi super-modelli di linguaggio se in o
 author: "Francesco Archidiacono"
 category: "Dalla Periferia"
 published_date: "2026-04-15T09:00:00.000Z"
-is_featured: false
+featured: false
 slug: "settimana-15-modelli-e-connessione"
 ---
 
