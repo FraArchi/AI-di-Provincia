@@ -32,14 +32,18 @@ const { title, description = "Intelligenza artificiale vista dall'Alta Irpinia. 
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/images/og-image.png', Astro.url)} />
     <meta property="og:locale" content="it_IT" />
 
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/images/og-image.png', Astro.url)} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/favicon-192.png" />
   </head>
   <body class="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
     <slot />
