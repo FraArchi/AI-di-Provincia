@@ -3,7 +3,7 @@ title: "Il Comune di Valbrembo e il bando per il chatbot"
 subtitle: "Un'analisi di come un'amministrazione di 4000 anime sta provando a digitalizzare lo sportello al cittadino."
 author: "Francesco"
 category: "Il Comune più vicino"
-cover: "/images/minimalist_abstract_illustration.png"
+cover: "../../assets/images/minimalist_abstract_illustration.png"
 published_date: "2026-04-12T11:15:00.000Z"
 featured: false
 slug: "comune-valbrembo-bando-chatbot"

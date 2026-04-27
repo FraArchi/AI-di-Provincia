@@ -3,7 +3,7 @@ title: "Ho provato per voi — Prima puntata Dicembre 2022, Vallesaccarda"
 subtitle: "Prime volte con l'AI."
 author: "Francesco Archidiacono"
 category: "Ho provato per voi"
-cover: "/images/illustrazione_quotidiano.png"
+cover: "../../assets/images/illustrazione_quotidiano.png"
 published_date: "2026-04-18T14:30:00.000Z"
 featured: true
 featuredOrder: 4

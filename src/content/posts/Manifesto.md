@@ -7,7 +7,7 @@ published_date: "2026-04-16"
 featured: true
 featuredOrder: 3
 slug: "perche-ho-creato-ai-di-provincia"
-cover: "/images/illustrazione_manifesto.png"
+cover: "../../assets/images/illustrazione_manifesto.png"
 ---
 
 Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype

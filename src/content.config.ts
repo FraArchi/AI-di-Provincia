@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 const postsCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     subtitle: z.string().optional().nullable(),
     author: z.string(),
@@ -13,7 +13,7 @@ const postsCollection = defineCollection({
     featured: z.boolean().optional().default(false),
     featuredOrder: z.number().optional(),
     slug: z.string().optional(),
-    cover: z.string().optional().nullable(),
+    cover: image().optional().nullable(),
   })
 });
 

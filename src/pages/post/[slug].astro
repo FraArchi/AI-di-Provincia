@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { getRubriche } from '../../lib/utils';
 import { ArrowLeft } from 'lucide-react';
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -82,7 +83,7 @@ const formatDate = (dateString: string | Date) => {
 
           {post.data.cover && (
             <div class="mb-12">
-              <img 
+              <Image 
                 src={post.data.cover} 
                 alt={`Copertina per ${post.data.title}`} 
                 class="w-full h-auto object-cover rounded-xl shadow-sm border border-gray-100" 
@@ -110,7 +111,7 @@ const formatDate = (dateString: string | Date) => {
                 <a href={`/post/${rp.data.slug || rp.id}`} class="block h-full flex flex-col">
                   {rp.data.cover && (
                     <div class="w-full aspect-[16/9] overflow-hidden bg-gray-100">
-                      <img 
+                      <Image 
                         src={rp.data.cover} 
                         alt={rp.data.title} 
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

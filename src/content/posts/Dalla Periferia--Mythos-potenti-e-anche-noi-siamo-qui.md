@@ -6,7 +6,7 @@ category: "Dalla Periferia"
 published_date: "2026-04-23T19:01:00.000Z"
 featured: false
 slug: "mythos-e-per-i-potenti-anche-noi-siamo-qui"
-cover: "/images/illustrazione_provincia_ai_chiaro_1.png"
+cover: "../../assets/images/illustrazione_provincia_ai_chiaro_1.png"
 ---
 
 Ho letto la notizia di Mythos come si legge qualcosa che non ti riguarda, e poi mi sono accorto che mi riguardava eccome.

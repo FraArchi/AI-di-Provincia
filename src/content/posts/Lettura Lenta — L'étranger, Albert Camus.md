@@ -7,7 +7,7 @@ published_date: "2026-04-23T08:00:00.000Z"
 featured: true
 featuredOrder: 5
 slug: "Lettura-Lenta—L-étranger-Albert-Camus"
-cover: "/images/illustrazione_lettura_lenta.png"
+cover: "../../assets/images/illustrazione_lettura_lenta.png"
 ---
 
 "Oggi la mamma è morta. O forse ieri, non so."

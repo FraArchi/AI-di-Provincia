@@ -7,7 +7,7 @@ published_date: "2026-04-21T08:00:00.000Z"
 featured: true
 featuredOrder: 1
 slug: "La Filosofia nell'IA"
-cover: "/images/illustrazione_bollettino.png"
+cover: "../../assets/images/illustrazione_bollettino.png"
 ---
 
 La prima volta che ho sentito parlare di Amanda Askell ho provato una cosa strana: una gioia dolce, quasi trattenuta. Non sorpresa — sapevo che dietro un progetto come Claude non potevano esserci solo ingegneri — ma una specie di sollievo. Qualcuno aveva già fatto quello che io, da Vallesaccarda, mille abitanti in provincia di Avellino, mi chiedo se potrò mai fare: fondere la filosofia e l'intelligenza artificiale in un lavoro vero.
