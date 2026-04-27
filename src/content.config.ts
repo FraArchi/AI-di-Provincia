@@ -13,6 +13,7 @@ const postsCollection = defineCollection({
     featured: z.boolean().optional().default(false),
     featuredOrder: z.number().optional(),
     slug: z.string().optional(),
+    cover: z.string().optional().nullable(),
   })
 });
 

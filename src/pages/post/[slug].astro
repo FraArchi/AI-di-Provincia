@@ -65,6 +65,16 @@ const formatDate = (dateString: string | Date) => {
             <span>{formatDate(post.data.published_date)}</span>
           </div>
 
+          {post.data.cover && (
+            <div class="mb-12">
+              <img 
+                src={post.data.cover} 
+                alt={`Copertina per ${post.data.title}`} 
+                class="w-full h-auto object-cover rounded-xl shadow-sm border border-gray-100" 
+              />
+            </div>
+          )}
+
           <div class="article-content prose prose-lg max-w-none text-gray-800 leading-relaxed mb-6">
             <Content />
           </div>
