@@ -38,7 +38,7 @@ export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheS
           {rubriche.map((article) => (
             <div key={article.category} className="group">
               {/* Titolo della rubrica */}
-              <h3 className="text-xs font-bold text-accent uppercase tracking-widest mb-3 border-l-2 border-accent pl-3">
+              <h3 className="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3 border-l-2 border-accent pl-3">
                 {article.category}
               </h3>
               

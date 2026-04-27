@@ -18,6 +18,21 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const rubriche = await getRubriche();
 
+const allPosts = await getCollection('posts');
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id && p.data.category === post.data.category)
+  .sort((a, b) => new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf())
+  .slice(0, 2);
+
+// Se non ci sono abbastanza post correlati, riempiamo con i più recenti
+if (relatedPosts.length < 2) {
+  const recentPosts = allPosts
+    .filter(p => p.id !== post.id && !relatedPosts.some(rp => rp.id === p.id))
+    .sort((a, b) => new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf())
+    .slice(0, 2 - relatedPosts.length);
+  relatedPosts.push(...recentPosts);
+}
+
 const formatDate = (dateString: string | Date) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('it-IT', {
@@ -44,7 +59,7 @@ const formatDate = (dateString: string | Date) => {
 
         <article>
           {post.data.category && (
-            <span class="text-sm font-medium text-accent uppercase tracking-wide mb-6 block">
+            <span class="text-sm font-mono text-accent uppercase tracking-widest mb-6 block">
               {post.data.category}
             </span>
           )}
@@ -59,7 +74,7 @@ const formatDate = (dateString: string | Date) => {
             </p>
           )}
 
-          <div class="flex gap-4 text-sm text-gray-500 mb-12 pb-8 border-b border-gray-200">
+          <div class="flex gap-4 text-sm font-mono text-gray-500 tracking-tight mb-12 pb-8 border-b border-gray-200">
             <span class="font-medium">{post.data.author}</span>
             <span>&middot;</span>
             <span>{formatDate(post.data.published_date)}</span>
@@ -75,12 +90,53 @@ const formatDate = (dateString: string | Date) => {
             </div>
           )}
 
-          <div class="article-content prose prose-lg max-w-none text-gray-800 leading-relaxed mb-6">
+          <div class="article-content prose prose-lg max-w-none text-gray-800 leading-relaxed mb-16">
             <Content />
           </div>
         </article>
       </div>
     </div>
+
+    {/* Sezione Potrebbe interessarti anche... */}
+    {relatedPosts.length > 0 && (
+      <div class="bg-gray-50 py-16 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6">
+          <h3 class="text-2xl font-serif font-bold text-gray-900 mb-8 text-center">
+            Potrebbe interessarti anche...
+          </h3>
+          <div class="grid sm:grid-cols-2 gap-8">
+            {relatedPosts.map(rp => (
+              <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                <a href={`/post/${rp.data.slug || rp.id}`} class="block h-full flex flex-col">
+                  {rp.data.cover && (
+                    <div class="w-full aspect-[16/9] overflow-hidden bg-gray-100">
+                      <img 
+                        src={rp.data.cover} 
+                        alt={rp.data.title} 
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6 flex flex-col flex-grow">
+                    {rp.data.category && (
+                      <span class="text-xs font-mono text-accent uppercase tracking-widest mb-2 block">
+                        {rp.data.category}
+                      </span>
+                    )}
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-snug">
+                      {rp.data.title}
+                    </h4>
+                    <div class="mt-auto pt-4 flex gap-2 text-xs font-mono text-gray-500 tracking-tight">
+                      <span>{formatDate(rp.data.published_date)}</span>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
   </main>
   
   <Footer />

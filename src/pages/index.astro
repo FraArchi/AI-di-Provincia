@@ -51,7 +51,7 @@ const getExcerpt = (body: string) => {
         {featuredArticle && (
           <article class="mb-20">
             {featuredArticle.data.category && (
-              <span class="text-sm font-medium text-accent uppercase tracking-wide mb-4 block">
+              <span class="text-sm font-mono text-accent uppercase tracking-widest mb-4 block">
                 {featuredArticle.data.category}
               </span>
             )}
@@ -76,7 +76,7 @@ const getExcerpt = (body: string) => {
                 {featuredArticle.data.subtitle}
               </p>
             )}
-            <div class="flex gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-200">
+            <div class="flex gap-4 text-sm font-mono text-gray-500 tracking-tight mb-8 pb-8 border-b border-gray-200">
               <span class="font-medium">{featuredArticle.data.author}</span>
               <span>&middot;</span>
               <span>{formatDate(featuredArticle.data.published_date)}</span>
@@ -116,7 +116,7 @@ const getExcerpt = (body: string) => {
                         </div>
                       )}
                       {article.data.category && (
-                        <span class="text-xs font-medium text-accent uppercase tracking-wide mb-2 block">
+                        <span class="text-xs font-mono text-accent uppercase tracking-widest mb-2 block">
                           {article.data.category}
                         </span>
                       )}
@@ -128,7 +128,7 @@ const getExcerpt = (body: string) => {
                           {article.data.subtitle}
                         </p>
                       )}
-                      <div class="flex gap-2 text-xs text-gray-500">
+                      <div class="flex gap-2 text-xs font-mono text-gray-500 tracking-tight">
                         <span>{article.data.author}</span>
                         <span>&middot;</span>
                         <span>{formatDate(article.data.published_date)}</span>
@@ -162,11 +162,11 @@ const getExcerpt = (body: string) => {
                       )}
                       <div class="flex-1">
                         {article.data.category && (
-                          <span class="text-xs font-medium text-accent uppercase tracking-wide mb-1 block">
+                          <span class="text-xs font-mono text-accent uppercase tracking-widest mb-1 block">
                             {article.data.category}
                           </span>
                         )}
-                        <h4 class="text-base font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
+                        <h4 class="text-base font-serif font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
                           {article.data.title}
                         </h4>
                         {article.data.subtitle && (
