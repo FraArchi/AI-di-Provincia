@@ -8,6 +8,7 @@ published_date: "2026-04-18T14:30:00.000Z"
 featured: true
 featuredOrder: 4
 slug: "provato-chatgpt-prima-volta"
+excerpt: "Dicembre 2022. Fuori faceva freddo come fa sempre in alta Irpinia a dicembre, e io ero seduto davanti allo schermo di casa mia — la stessa casa, a ..."
 ---
 
 Dicembre 2022. Fuori faceva freddo come fa sempre in alta Irpinia a dicembre, e io ero seduto davanti allo schermo di casa mia — la stessa casa, a Vallesaccarda, 1100 abitanti, provincia di Avellino — a scrivere le prime domande a una cosa che si chiamava ChatGPT.

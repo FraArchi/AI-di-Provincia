@@ -8,6 +8,7 @@ featured: true
 featuredOrder: 3
 slug: "perche-ho-creato-ai-di-provincia"
 cover: "../../assets/images/illustrazione_manifesto.png"
+excerpt: "Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype"
 ---
 
 Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype

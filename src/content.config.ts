@@ -14,6 +14,7 @@ const postsCollection = defineCollection({
     featuredOrder: z.number().optional(),
     slug: z.string().optional(),
     cover: image().optional().nullable(),
+    excerpt: z.string().optional(),
   })
 });
 

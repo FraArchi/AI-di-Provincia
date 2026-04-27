@@ -83,7 +83,9 @@ const getExcerpt = (body: string) => {
               <span>{formatDate(featuredArticle.data.published_date)}</span>
             </div>
 
-            <div class="excerpt-content max-w-none mb-8 text-gray-800 leading-relaxed text-lg line-clamp-6" set:html={getExcerpt(featuredArticle.body || '')}></div>
+            <div class="excerpt-content max-w-none mb-8 text-gray-800 leading-relaxed text-lg line-clamp-6">
+              {featuredArticle.data.excerpt || featuredArticle.data.subtitle}
+            </div>
 
             <a
               href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}
@@ -124,11 +126,9 @@ const getExcerpt = (body: string) => {
                       <h4 class="text-xl font-serif font-bold text-gray-900 mb-2 group-hover:text-accent transition-colors leading-snug">
                         {article.data.title}
                       </h4>
-                      {article.data.subtitle && (
-                        <p class="text-sm text-gray-600 mb-3 line-clamp-2">
-                          {article.data.subtitle}
-                        </p>
-                      )}
+                      <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                        {article.data.excerpt || article.data.subtitle}
+                      </p>
                       <div class="flex gap-2 text-xs font-mono text-gray-500 tracking-tight">
                         <span>{article.data.author}</span>
                         <span>&middot;</span>

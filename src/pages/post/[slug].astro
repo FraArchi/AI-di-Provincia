@@ -34,6 +34,9 @@ if (relatedPosts.length < 2) {
   relatedPosts.push(...recentPosts);
 }
 
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const readingTime = Math.ceil(words / 200) || 1;
+
 const formatDate = (dateString: string | Date) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('it-IT', {
@@ -79,6 +82,8 @@ const formatDate = (dateString: string | Date) => {
             <span class="font-medium">{post.data.author}</span>
             <span>&middot;</span>
             <span>{formatDate(post.data.published_date)}</span>
+            <span>&middot;</span>
+            <span>{readingTime} min di lettura</span>
           </div>
 
           {post.data.cover && (
@@ -140,5 +145,7 @@ const formatDate = (dateString: string | Date) => {
     )}
   </main>
   
+  <Footer />
+</Layout>
   <Footer />
 </Layout>

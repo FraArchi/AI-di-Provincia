@@ -8,6 +8,7 @@ featured: true
 featuredOrder: 5
 slug: "Lettura-Lenta—L-étranger-Albert-Camus"
 cover: "../../assets/images/illustrazione_lettura_lenta.png"
+excerpt: "'Oggi la mamma è morta. O forse ieri, non so.' Punto. Nient'altro."
 ---
 
 "Oggi la mamma è morta. O forse ieri, non so."

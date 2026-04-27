@@ -7,6 +7,7 @@ cover: "../../assets/images/minimalist_abstract_illustration.png"
 published_date: "2026-04-12T11:15:00.000Z"
 featured: false
 slug: "comune-valbrembo-bando-chatbot"
+excerpt: "Quando pensiamo all'innovazione nella Pubblica Amministrazione, immaginiamo grandi ministeri o le Smart City metropolitane. Ma cosa succede quando ..."
 ---
 
 Quando pensiamo all'innovazione nella Pubblica Amministrazione, immaginiamo grandi ministeri o le Smart City metropolitane. Ma cosa succede quando l'innovazione deve scontrarsi con i bilanci all'osso e il personale ridotto di un piccolo comune italiano?

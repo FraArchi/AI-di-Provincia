@@ -9,6 +9,7 @@ featured: true
 mainFeatured: true
 featuredOrder: 2
 slug: "intervista-monastera"
+excerpt: "Era seduta vicino al fuoco. Fuori faceva freddo, dentro c'era quella luce arancione che hanno solo le case dei paesi. Ho tirato fuori il telefono e..."
 ---
 
 Era seduta vicino al fuoco. Fuori faceva freddo, dentro c'era quella luce arancione che hanno solo le case dei paesi. Ho tirato fuori il telefono e ho detto: "Monastera, devo farti qualche domanda."
