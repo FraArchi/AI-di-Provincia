@@ -15,6 +15,7 @@ export async function getRubriche(): Promise<CategoryArticle[]> {
         category,
         title: post.data.title,
         slug: post.data.slug || post.id,
+        cover: post.data.cover,
       };
     }
   });

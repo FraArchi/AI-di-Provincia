@@ -6,6 +6,7 @@ export interface CategoryArticle {
   category: string;
   title: string;
   slug: string;
+  cover?: string | null;
 }
 
 interface NavigationProps {

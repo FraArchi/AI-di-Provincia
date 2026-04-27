@@ -46,10 +46,20 @@ export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheS
               <a
                 href={`/post/${article.slug}`}
                 onClick={onClose}
-                className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3 block"
+                className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3 group/link"
               >
-                <ChevronRight size={16} className="text-gray-300 mt-1 flex-shrink-0 group-hover:text-accent transition-colors" />
-                <p className="text-sm font-serif font-medium text-gray-800 leading-snug group-hover:text-accent transition-colors m-0">
+                {article.cover ? (
+                  <div className="shrink-0 w-12 h-12 overflow-hidden rounded shadow-sm border border-gray-100 mt-1">
+                    <img 
+                      src={article.cover} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover group-hover/link:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                ) : (
+                  <ChevronRight size={16} className="text-gray-300 mt-1 flex-shrink-0 group-hover/link:text-accent transition-colors" />
+                )}
+                <p className="text-sm font-serif font-medium text-gray-800 leading-snug group-hover/link:text-accent transition-colors m-0">
                   {article.title}
                 </p>
               </a>

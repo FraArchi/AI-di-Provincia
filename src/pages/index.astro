@@ -55,8 +55,21 @@ const getExcerpt = (body: string) => {
                 {featuredArticle.data.category}
               </span>
             )}
-            <h2 class="text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight">
-              {featuredArticle.data.title}
+            
+            {featuredArticle.data.cover && (
+              <a href={`/post/${featuredArticle.data.slug || featuredArticle.id}`} class="block mb-6 overflow-hidden rounded-xl shadow-sm border border-gray-100 group">
+                <img 
+                  src={featuredArticle.data.cover} 
+                  alt={featuredArticle.data.title} 
+                  class="w-full h-[400px] md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </a>
+            )}
+
+            <h2 class="text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight hover:text-accent transition-colors">
+              <a href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}>
+                {featuredArticle.data.title}
+              </a>
             </h2>
             {featuredArticle.data.subtitle && (
               <p class="text-2xl text-gray-600 mb-8 leading-relaxed">
@@ -93,6 +106,15 @@ const getExcerpt = (body: string) => {
                       href={`/post/${article.data.slug || article.id}`}
                       class="text-left w-full block"
                     >
+                      {article.data.cover && (
+                        <div class="mb-4 overflow-hidden rounded-xl shadow-sm border border-gray-100 aspect-[16/9]">
+                          <img 
+                            src={article.data.cover} 
+                            alt={article.data.title} 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                          />
+                        </div>
+                      )}
                       {article.data.category && (
                         <span class="text-xs font-medium text-accent uppercase tracking-wide mb-2 block">
                           {article.data.category}
@@ -127,21 +149,32 @@ const getExcerpt = (body: string) => {
                   <article class="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
                      <a
                       href={`/post/${article.data.slug || article.id}`}
-                      class="text-left w-full group block"
+                      class="text-left w-full group flex gap-4 items-start"
                     >
-                      {article.data.category && (
-                        <span class="text-xs font-medium text-accent uppercase tracking-wide mb-2 block">
-                          {article.data.category}
-                        </span>
+                      {article.data.cover && (
+                        <div class="shrink-0 w-20 h-20 overflow-hidden rounded-md shadow-sm border border-gray-100">
+                          <img 
+                            src={article.data.cover} 
+                            alt={article.data.title} 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                          />
+                        </div>
                       )}
-                      <h4 class="text-base font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
-                        {article.data.title}
-                      </h4>
-                      {article.data.subtitle && (
-                        <p class="text-xs text-gray-600 mt-1 line-clamp-2">
-                          {article.data.subtitle}
-                        </p>
-                      )}
+                      <div class="flex-1">
+                        {article.data.category && (
+                          <span class="text-xs font-medium text-accent uppercase tracking-wide mb-1 block">
+                            {article.data.category}
+                          </span>
+                        )}
+                        <h4 class="text-base font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors leading-tight">
+                          {article.data.title}
+                        </h4>
+                        {article.data.subtitle && (
+                          <p class="text-xs text-gray-600 mt-1 line-clamp-2">
+                            {article.data.subtitle}
+                          </p>
+                        )}
+                      </div>
                     </a>
                   </article>
                 ))}
