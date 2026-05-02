@@ -19,21 +19,43 @@ export const server = {
         });
       }
 
-      if (!audienceId) {
-        throw new ActionError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: "Configurazione mancante: Devi creare una 'Audience' su Resend e aggiungere RESEND_AUDIENCE_ID.",
-        });
-      }
-
       const resend = new Resend(apiKey);
       
       try {
-        const { error } = await resend.contacts.create({
-          email,
+        // TENTATIVO 1: Aggiunta ai contatti (Newsletter vera e propria)
+        const { error: contactError } = await resend.contacts.create({
+          email: email,
           unsubscribed: false,
-          audienceId: audienceId,
+          ...(audienceId ? { audienceId } : {}),
         });
+
+        if (!contactError) {
+          return { success: true };
+        }
+
+        // TENTATIVO 2 (Fallback): Se il contatto fallisce, invia una mail di notifica a te
+        // Questo serve se l'Audience non è configurata o il dominio non è verificato
+        console.warn("Contact creation failed, falling back to email notification:", contactError);
+        
+        await resend.emails.send({
+          from: 'onboarding@resend.dev',
+          to: 'francescoarchidiacono06@gmail.com',
+          subject: 'Nuovo iscritto alla Newsletter (Fallback)',
+          html: `<p>Un nuovo utente ha richiesto l'iscrizione: <strong>${email}</strong></p>
+                 <p>Nota: Questo è un messaggio di fallback perché l'Audience su Resend non è ancora attiva.</p>`
+        });
+
+        return { success: true, message: "Richiesta ricevuta!" };
+
+      } catch (e) {
+        if (e instanceof ActionError) throw e;
+        console.error("Subscription Error:", e);
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: "Errore durante l'iscrizione. Riprova più tardi.",
+        });
+      }
+    }
 
         if (error) {
           throw new ActionError({
