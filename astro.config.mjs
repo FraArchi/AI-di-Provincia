@@ -9,6 +9,9 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://aidiprovincia.it',
   adapter: vercel(),
+  security: {
+    checkOrigin: false,
+  },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
