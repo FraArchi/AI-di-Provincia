@@ -32,21 +32,33 @@ export const server = {
         });
 
         if (!contactError) {
-          return { success: true };
+          return { success: true, message: "Iscrizione completata con successo!" };
         }
 
-        // TENTATIVO 2 (Fallback): Se il contatto fallisce, invia una mail di notifica
-        console.warn("Contact creation failed, falling back to email notification:", contactError);
+        // Se l'errore è "già esistente", lo consideriamo un successo per l'utente
+        if (contactError.message.toLowerCase().includes('already exists')) {
+          return { success: true, message: "Sei già iscritto alla newsletter!" };
+        }
+
+        // TENTATIVO 2 (Fallback): Invio mail di notifica a te
+        console.warn("Contact creation failed, falling back to email notification:", contactError.message);
         
-        await resend.emails.send({
+        const { error: mailError } = await resend.emails.send({
           from: 'onboarding@resend.dev',
           to: 'francescoarchidiacono06@gmail.com',
-          subject: 'Nuovo iscritto alla Newsletter (Fallback)',
-          html: `<p>Un nuovo utente ha richiesto l'iscrizione: <strong>${email}</strong></p>
-                 <p>Nota: Questo è un messaggio di fallback perché l'Audience su Resend non è ancora attiva.</p>`
+          subject: `Nuovo iscritto: ${email}`,
+          html: `<p>Un nuovo utente ha richiesto l'iscrizione dal sito: <strong>${email}</strong></p>
+                 <p>Dettagli errore Resend: ${contactError.message}</p>`
         });
 
-        return { success: true, message: "Richiesta ricevuta!" };
+        if (mailError) {
+          throw new ActionError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: "Impossibile completare l'iscrizione. Per favore riprova più tardi.",
+          });
+        }
+
+        return { success: true, message: "Richiesta ricevuta, ti abbiamo aggiunto alla lista!" };
 
       } catch (e) {
         if (e instanceof ActionError) throw e;

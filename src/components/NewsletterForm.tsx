@@ -20,9 +20,9 @@ export default function NewsletterForm() {
       if (error) {
         setStatus('error');
         setMessage(error.message || 'Qualcosa è andato storto.');
-      } else {
+      } else if (data?.success) {
         setStatus('success');
-        setMessage('Grazie per esserti iscritto!');
+        setMessage(data.message || 'Grazie per esserti iscritto!');
         setEmail('');
       }
     } catch (e) {
