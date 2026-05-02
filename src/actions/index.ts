@@ -2,6 +2,7 @@ import { defineAction, ActionError } from 'astro:actions';
 import { z } from 'astro:schema';
 import { Resend } from 'resend';
 
+// Astro Action per l'iscrizione alla newsletter tramite Resend
 export const server = {
   subscribe: defineAction({
     accept: 'form',
