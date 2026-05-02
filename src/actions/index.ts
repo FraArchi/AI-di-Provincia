@@ -1,6 +1,8 @@
-import { defineAction } from 'astro:actions';
+import { defineAction, ActionError } from 'astro:actions';
 import { z } from 'astro:schema';
 import { Resend } from 'resend';
+
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const server = {
   subscribe: defineAction({
@@ -9,24 +11,28 @@ export const server = {
       email: z.string().email("Inserisci un indirizzo email valido"),
     }),
     handler: async ({ email }) => {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      
       try {
-        const { data, error } = await resend.contacts.create({
-          email: email,
+        const { error } = await resend.contacts.create({
+          email,
           unsubscribed: false,
-          audienceId: process.env.RESEND_AUDIENCE_ID || '',
+          audienceId: import.meta.env.RESEND_AUDIENCE_ID || '',
         });
 
         if (error) {
-          console.error("Resend Error:", error);
-          return { success: false, error: error.message };
+          throw new ActionError({
+            code: 'BAD_REQUEST',
+            message: error.message,
+          });
         }
 
         return { success: true };
       } catch (e) {
+        if (e instanceof ActionError) throw e;
         console.error("Subscription Error:", e);
-        return { success: false, error: "Errore durante l'iscrizione. Riprova più tardi." };
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: "Errore durante l'iscrizione. Riprova più tardi.",
+        });
       }
     }
   })
