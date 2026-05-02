@@ -60,6 +60,16 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
             >
               Rubriche
             </button>
+            <a 
+              href="#newsletter" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm font-bold text-accent hover:underline transition-colors"
+            >
+              Newsletter ↓
+            </a>
           </nav>
 
           {/* Pulsante Hamburger */}
@@ -94,6 +104,17 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
               >
                 Rubriche
               </button>
+              <a 
+                href="#newsletter" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-left px-5 py-3 text-sm font-bold text-accent hover:bg-gray-50 transition-colors border-t border-gray-100 block"
+              >
+                Newsletter ↓
+              </a>
             </div>
           )}
         </div>
