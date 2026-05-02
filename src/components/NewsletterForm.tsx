@@ -39,20 +39,25 @@ export default function NewsletterForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="la-tua@email.it"
+          aria-label="Indirizzo Email"
           required
-          className="flex-grow px-4 py-3 border-2 border-gray-900 rounded-lg focus:outline-none focus:border-[#8B1A1A] transition-colors font-mono"
+          className="flex-grow px-4 py-3 border-2 border-gray-900 rounded-lg focus:outline-none focus:border-accent transition-colors font-mono"
           disabled={status === 'loading' || status === 'success'}
         />
         <button
           type="submit"
           disabled={status === 'loading' || status === 'success'}
-          className="bg-[#8B1A1A] text-white px-6 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-all disabled:opacity-50"
+          className="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-all disabled:opacity-50"
         >
           {status === 'loading' ? 'Inviando...' : 'Iscriviti'}
         </button>
       </form>
       {message && (
-        <p className={`mt-4 text-sm font-mono ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+        <p 
+          aria-live="polite" 
+          role="status" 
+          className={`mt-4 text-sm font-mono ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}
+        >
           {message}
         </p>
       )}
