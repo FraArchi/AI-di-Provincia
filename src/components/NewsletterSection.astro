@@ -1,0 +1,29 @@
+---
+import NewsletterForm from './NewsletterForm';
+---
+
+<section id="newsletter" class="bg-gray-50 border-t border-b border-gray-200 py-24 px-6">
+  <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+    <div class="mb-10 relative">
+      <svg width="180" height="80" viewBox="0 0 180 80" class="mx-auto text-gray-900" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 60 Q 50 10, 90 60 T 160 20" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        <circle cx="160" cy="20" r="6" class="fill-accent" />
+      </svg>
+      <div class="absolute -top-6 -right-12 transform rotate-12 bg-white px-3 py-1 border-2 border-gray-900 text-xs font-mono uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        Pensiero Lento
+      </div>
+    </div>
+
+    <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Restiamo in contatto</h2>
+    <p class="text-xl text-gray-600 mb-12 max-w-2xl leading-relaxed">
+      Una lettera periodica tra umanità e algoritmi. <br class="hidden md:block" />
+      Niente spam, solo riflessioni per chi vive fuori dai centri tecnologici.
+    </p>
+
+    <NewsletterForm client:load />
+    
+    <p class="mt-10 text-sm text-gray-400 font-mono italic">
+      Puoi disiscriverti in ogni momento. Rispetto la tua attenzione.
+    </p>
+  </div>
+</section>

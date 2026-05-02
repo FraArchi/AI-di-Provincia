@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -47,5 +49,7 @@ const { title, description = "Intelligenza artificiale vista dall'Alta Irpinia. 
   </head>
   <body class="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
     <slot />
+    <NewsletterSection />
+    <Footer />
   </body>
 </html>

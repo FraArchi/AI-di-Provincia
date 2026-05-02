@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation';
-import Footer from '../components/Footer.astro';
 import { getRubriche } from '../lib/utils';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
@@ -191,6 +190,4 @@ const getExcerpt = (body: string) => {
       </div>
     </div>
   </main>
-  
-  <Footer />
 </Layout>
