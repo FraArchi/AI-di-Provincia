@@ -9,8 +9,9 @@ export const server = {
       email: z.string().email("Inserisci un indirizzo email valido"),
     }),
     handler: async ({ email }) => {
-      const apiKey = import.meta.env.RESEND_API_KEY;
-      const audienceId = import.meta.env.RESEND_AUDIENCE_ID;
+      // Prova a recuperare la chiave in entrambi i modi (Astro e Node.js)
+      const apiKey = import.meta.env.RESEND_API_KEY || (typeof process !== 'undefined' ? process.env.RESEND_API_KEY : undefined);
+      const audienceId = import.meta.env.RESEND_AUDIENCE_ID || (typeof process !== 'undefined' ? process.env.RESEND_AUDIENCE_ID : undefined);
 
       if (!apiKey) {
         throw new ActionError({
