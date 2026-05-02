@@ -33,8 +33,7 @@ export const server = {
           return { success: true };
         }
 
-        // TENTATIVO 2 (Fallback): Se il contatto fallisce, invia una mail di notifica a te
-        // Questo serve se l'Audience non è configurata o il dominio non è verificato
+        // TENTATIVO 2 (Fallback): Se il contatto fallisce, invia una mail di notifica
         console.warn("Contact creation failed, falling back to email notification:", contactError);
         
         await resend.emails.send({
@@ -47,24 +46,6 @@ export const server = {
 
         return { success: true, message: "Richiesta ricevuta!" };
 
-      } catch (e) {
-        if (e instanceof ActionError) throw e;
-        console.error("Subscription Error:", e);
-        throw new ActionError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: "Errore durante l'iscrizione. Riprova più tardi.",
-        });
-      }
-    }
-
-        if (error) {
-          throw new ActionError({
-            code: 'BAD_REQUEST',
-            message: error.message,
-          });
-        }
-
-        return { success: true };
       } catch (e) {
         if (e instanceof ActionError) throw e;
         console.error("Subscription Error:", e);
