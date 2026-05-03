@@ -11,8 +11,8 @@ export const server = {
     }),
     handler: async ({ email }) => {
       // Prova a recuperare la chiave in entrambi i modi (Astro e Node.js)
-      const apiKey = import.meta.env.RESEND_API_KEY || (typeof process !== 'undefined' ? process.env.RESEND_API_KEY : undefined);
-      const audienceId = import.meta.env.RESEND_AUDIENCE_ID || (typeof process !== 'undefined' ? process.env.RESEND_AUDIENCE_ID : undefined);
+      const apiKey = (import.meta.env.RESEND_API_KEY || (typeof process !== 'undefined' ? process.env.RESEND_API_KEY : undefined))?.trim();
+      const audienceId = (import.meta.env.RESEND_AUDIENCE_ID || (typeof process !== 'undefined' ? process.env.RESEND_AUDIENCE_ID : undefined))?.trim();
 
       if (!apiKey) {
         throw new ActionError({
@@ -45,7 +45,7 @@ export const server = {
         
         const { error: mailError } = await resend.emails.send({
           from: 'onboarding@resend.dev',
-          to: 'francescoarchidiacono06@gmail.com',
+          to: 'fraarchi06@gmail.com',
           subject: `Nuovo iscritto: ${email}`,
           html: `<p>Un nuovo utente ha richiesto l'iscrizione dal sito: <strong>${email}</strong></p>
                  <p>Dettagli errore Resend: ${contactError.message}</p>`
