@@ -15,6 +15,8 @@ const postsCollection = defineCollection({
     slug: z.string().optional(),
     cover: image().optional().nullable(),
     excerpt: z.string().optional(),
+    cta_text: z.string().optional(),
+    cta_image: image().optional(),
   })
 });
 

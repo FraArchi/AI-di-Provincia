@@ -98,6 +98,10 @@ const formatDate = (dateString: string | Date) => {
           <div class="article-content prose prose-lg max-w-none text-gray-800 leading-relaxed mb-16">
             <Content />
           </div>
+
+          {post.data.cta_text && (
+            <ArticleCTA text={post.data.cta_text} image={post.data.cta_image} />
+          )}
         </article>
       </div>
     </div>

@@ -10,6 +10,8 @@ mainFeatured: true
 featuredOrder: 2
 slug: "intervista-monastera"
 excerpt: "Era seduta vicino al fuoco. Fuori faceva freddo, dentro c'era quella luce arancione che hanno solo le case dei paesi. Ho tirato fuori il telefono e..."
+cta_text: "Le storie della provincia hanno bisogno di essere ascoltate. Iscriviti per non perdere i prossimi reportage dai margini della tecnologia."
+cta_image: "../../assets/images/ctas/cta-intervista.png"
 ---
 
 Era seduta vicino al fuoco. Fuori faceva freddo, dentro c'era quella luce arancione che hanno solo le case dei paesi. Ho tirato fuori il telefono e ho detto: "Monastera, devo farti qualche domanda."

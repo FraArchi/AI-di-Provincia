@@ -9,6 +9,8 @@ featuredOrder: 1
 slug: "La Filosofia nell'IA"
 cover: "../../assets/images/illustrazione_bollettino.png"
 excerpt: "La prima volta che ho sentito parlare di Amanda Askell ho provato una cosa strana: una gioia dolce, quasi trattenuta. Non sorpresa — sapevo che die..."
+cta_text: "L'AI ha un'anima? Forse no, ma il modo in cui ne parliamo dice molto della nostra. Restiamo in contatto per esplorare questo sostrato filosofico."
+cta_image: "../../assets/images/ctas/cta-filosofia.png"
 ---
 
 La prima volta che ho sentito parlare di Amanda Askell ho provato una cosa strana: una gioia dolce, quasi trattenuta. Non sorpresa — sapevo che dietro un progetto come Claude non potevano esserci solo ingegneri — ma una specie di sollievo. Qualcuno aveva già fatto quello che io, da Vallesaccarda, mille abitanti in provincia di Avellino, mi chiedo se potrò mai fare: fondere la filosofia e l'intelligenza artificiale in un lavoro vero.
