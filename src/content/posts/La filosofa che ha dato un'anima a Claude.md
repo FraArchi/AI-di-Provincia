@@ -7,7 +7,7 @@ published_date: "2026-04-21T08:00:00.000Z"
 featured: true
 featuredOrder: 1
 slug: "La Filosofia nell'IA"
-cover: "../../assets/images/illustrazione_bollettino.png"
+cover: "../../assets/images/illustrazione-bollettino.png"
 excerpt: "La prima volta che ho sentito parlare di Amanda Askell ho provato una cosa strana: una gioia dolce, quasi trattenuta. Non sorpresa — sapevo che die..."
 cta_text: "L'AI ha un'anima? Forse no, ma il modo in cui ne parliamo dice molto della nostra. Restiamo in contatto per esplorare questo sostrato filosofico."
 cta_image: "../../assets/images/ctas/cta-filosofia.png"

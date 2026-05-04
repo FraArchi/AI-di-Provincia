@@ -5,7 +5,7 @@ import ArticleCTA from '../../components/ArticleCTA.astro';
 import { getRubriche } from '../../lib/utils';
 import { ArrowLeft } from 'lucide-react';
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -18,6 +18,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const rubriche = await getRubriche();
+
+// Ottimizzazione immagine per Open Graph e Schema.org
+const optimizedCover = post.data.cover 
+  ? await getImage({ src: post.data.cover, format: 'webp', width: 1200, height: 630 }) 
+  : null;
+const ogImage = optimizedCover ? optimizedCover.src : undefined;
 
 const allPosts = await getCollection('posts');
 const relatedPosts = allPosts
@@ -47,7 +53,37 @@ const formatDate = (dateString: string | Date) => {
 };
 ---
 
-<Layout title={`${post.data.title} - AI di Provincia`} description={post.data.subtitle || ''}>
+<Layout 
+  title={`${post.data.title} - AI di Provincia`} 
+  description={post.data.subtitle || post.data.excerpt || ''}
+  image={ogImage}
+>
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.subtitle || post.data.excerpt || "",
+    "image": ogImage ? new URL(ogImage, Astro.site) : undefined,
+    "datePublished": post.data.published_date,
+    "author": {
+      "@type": "Person",
+      "name": post.data.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI di Provincia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL('/images/og-image.png', Astro.site)
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": new URL(Astro.url.pathname, Astro.site)
+    }
+  })} />
+
   <Navigation client:load currentPage="article" rubriche={rubriche} />
   
   <main class="flex-grow">
@@ -90,7 +126,7 @@ const formatDate = (dateString: string | Date) => {
             <div class="mb-12">
               <Image 
                 src={post.data.cover} 
-                alt={`Copertina per ${post.data.title}`} 
+                alt={post.data.title} 
                 class="w-full h-auto object-cover rounded-xl shadow-sm border border-gray-100" 
               />
             </div>

@@ -3,7 +3,7 @@ title: "Hirpo"
 subtitle: "Come l'ASL di Avellino ha dato un nome irpino a qualcosa di inaspettato"
 author: "Francesco Archidiacono"
 category: "Il Comune più vicino"
-cover: "../../assets/images/hirpo_v3.png"
+cover: "../../assets/images/hirpo-v3.png"
 published_date: "2026-04-27T11:15:00.000Z"
 featured: false
 slug: "hirpo"

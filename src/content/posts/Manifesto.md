@@ -7,7 +7,7 @@ published_date: "2026-04-16"
 featured: true
 featuredOrder: 3
 slug: "perche-ho-creato-ai-di-provincia"
-cover: "../../assets/images/illustrazione_manifesto.png"
+cover: "../../assets/images/illustrazione-manifesto.png"
 excerpt: "Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype"
 cta_text: "Questo progetto è solo all'inizio. Se vuoi far parte di questa riflessione lenta, iscriviti alla newsletter. Nessuna rivoluzione, solo piccoli passi."
 cta_image: "../../assets/images/ctas/cta-manifesto.png"

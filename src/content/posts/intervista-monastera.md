@@ -3,7 +3,7 @@ title: "Buon lavoro, ai nostri amici artificiali"
 subtitle: "Mia madre, il fuoco nel camino, e l'intelligenza artificiale"
 author: "Francesco Archidiacono"
 category: "Voci dal territorio"
-cover: "../../assets/images/illustrazione_interviste.png"
+cover: "../../assets/images/illustrazione-interviste.png"
 published_date: "2026-04-17T15:00:00.000Z"
 featured: true
 mainFeatured: true
