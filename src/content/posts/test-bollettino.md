@@ -5,7 +5,7 @@ author: "Local Brain"
 category: "Il Bollettino dell'IA"
 published_date: "2026-04-17T12:00:00.000Z"
 featured: false
-slug: "report-20260417"
+slug: "bollettino-ia-2026-04-17"
 excerpt: "Questo è il recap delle ultime notizie dal mondo AI, filtrate con la nostra lente di provincia."
 ---
 
