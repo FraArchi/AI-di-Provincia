@@ -13,7 +13,12 @@ cta_text: "Questo progetto è solo all'inizio. Se vuoi far parte di questa rifle
 cta_image: "../../assets/images/ctas/cta-manifesto.png"
 ---
 
-> **Nota** — Questo articolo è stato il primo che ho pubblicato su AI di Provincia, ad aprile 2026. È rimasto com'è, perché racconta da dove sono partito. Nel frattempo ho capito una cosa che qui non dico ancora chiaramente: non sono rimasto in provincia per scelta, e questo blog non è una celebrazione della periferia. È il modo in cui trasformo un limite in materiale. Il [Manifesto](/manifesto) lo dice senza filtri.
+<div class="bg-gray-50 border-l-4 border-accent p-8 rounded-r-xl shadow-sm mb-12">
+  <p class="font-mono text-xl text-gray-800 leading-relaxed m-0!">
+    <strong class="text-accent uppercase tracking-wider block mb-2">Nota editoriale</strong>
+    Questo articolo è stato il primo che ho pubblicato su AI di Provincia, ad aprile 2026. È rimasto com'è, perché racconta da dove sono partito. Nel frattempo ho capito una cosa che qui non dico ancora chiaramente: non sono rimasto in provincia per scelta, e questo blog non è una celebrazione della periferia. È il modo in cui trasformo un limite in materiale. Il <a href="/manifesto" class="text-accent font-extrabold underline decoration-2 underline-offset-4 hover:bg-accent hover:text-white transition-all px-1 rounded">Manifesto</a> lo dice senza filtri.
+  </p>
+</div>
 
 Stavo chattando con un'AI. Non per lavoro, non per un progetto preciso — stavo cercando un modo per guadagnare qualcosa sfruttando l'AI, come fanno in tanti. E mentre scrivevo e leggevo, mi sono reso conto di una cosa strana: usavo questi strumenti da anni, quasi ogni giorno, da quando ero un ragazzino. Quasi un quarto della mia vita con l'AI sempre accanto. Eppure non ne parlavo con nessuno. Non c'era nessun posto dove farlo, almeno non per uno come me.
 
