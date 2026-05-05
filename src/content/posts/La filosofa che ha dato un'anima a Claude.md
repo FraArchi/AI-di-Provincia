@@ -4,6 +4,7 @@ subtitle: "Filosofia & AI"
 author: "Francesco Archidiacono"
 category: "Sostrato"
 published_date: "2026-04-21T08:00:00.000Z"
+mainFeatured: true
 featured: true
 featuredOrder: 1
 cover: "../../assets/images/illustrazione-bollettino.png"
