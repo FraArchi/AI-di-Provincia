@@ -62,11 +62,26 @@ export default function NewsletterForm() {
             {message}
           </p>
           {status === 'success' && (
-            <p className="mt-2 text-sm">
-              <a href="/manifesto" className="text-accent font-bold hover:underline">
-                Leggi ora il Manifesto della Tecnologia Restante &rarr;
-              </a>
-            </p>
+            <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+              <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">La tua biblioteca della resistenza:</p>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="/manifesto" className="text-accent font-bold hover:underline">
+                    📜 Il Manifesto della Tecnologia Restante &rarr;
+                  </a>
+                </li>
+                <li>
+                  <a href="/lettura-lenta" className="text-accent font-bold hover:underline">
+                    📖 Esercizi di Lettura Lenta &rarr;
+                  </a>
+                </li>
+                <li>
+                  <a href="/glossario" className="text-accent font-bold hover:underline">
+                    💡 Glossario del Nuovo Mondo &rarr;
+                  </a>
+                </li>
+              </ul>
+            </div>
           )}
         </div>
       )}

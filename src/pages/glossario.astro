@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation';
+import { getRubriche } from '../lib/utils';
+
+const rubriche = await getRubriche();
+
+const terms = [
+  {
+    id: "01",
+    term: "Modello Linguistico (LLM)",
+    metaphor: "La Piazza del Paese",
+    description: "Una memoria collettiva che non pensa, ma ricorda la frequenza delle parole come un anziano che completa un proverbio antico."
+  },
+  {
+    id: "02",
+    term: "Prompt",
+    metaphor: "L'Incipit al Caminetto",
+    description: "La scintilla che avvia il dialogo. Più è preciso l'incipit, più il racconto che riceverai sarà ricco di senso e verità."
+  },
+  {
+    id: "03",
+    term: "RAG",
+    metaphor: "La Biblioteca del Parroco",
+    description: "L'atto di consultare documenti reali prima di rispondere, per evitare che la memoria della piazza inventi fatti mai accaduti."
+  },
+  {
+    id: "04",
+    term: "Latent Space",
+    metaphor: "Il Magazzino delle Sementi",
+    description: "L'universo invisibile dove i concetti sono vicini per natura e affinità, non per ordine alfabetico."
+  },
+  {
+    id: "05",
+    term: "Training",
+    metaphor: "La Stagione del Raccolto",
+    description: "Il tempo della semina e della cura del pensiero, che produce un modello capace di nutrire le nostre domande."
+  },
+  {
+    id: "06",
+    term: "Pesi (Weights)",
+    metaphor: "I Sentieri Battuti",
+    description: "Le strade preferite dal pensiero artificiale, tracciate dall'esperienza di miliardi di conversazioni precedenti."
+  },
+  {
+    id: "07",
+    term: "Token",
+    metaphor: "I Chicchi di Grano",
+    description: "Le particelle elementari della comunicazione. L'unità minima di senso che la macchina macina per produrre farina bianca."
+  },
+  {
+    id: "08",
+    term: "Allucinazione",
+    metaphor: "Il Miraggio della Controra",
+    description: "Quando la troppa luce della statistica ci fa vedere cose che non esistono, ma che hanno la forma rassicurante della verità."
+  }
+];
+---
+
+<Layout title="Glossario del Nuovo Mondo - AI di Provincia">
+  <Navigation client:load currentPage="glossario" rubriche={rubriche} />
+  
+  <main class="flex-grow bg-gray-50 py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white p-12 md:p-20 shadow-xl rounded-2xl border border-gray-100 relative overflow-hidden">
+        {/* Decorative Element */}
+        <div class="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -mr-16 -mt-16"></div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 rounded-full -ml-12 -mb-12"></div>
+        
+        <div class="text-center mb-20">
+          <span class="text-accent font-mono text-sm uppercase tracking-[0.3em] mb-4 block">Dizionario Antropologico</span>
+          <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
+            Glossario del Nuovo Mondo
+          </h1>
+          <p class="text-xl text-gray-600 italic max-w-2xl mx-auto">
+            Tradurre l'intelligenza artificiale nel linguaggio della terra
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
+          {terms.map((item) => (
+            <div class="group">
+              <div class="flex items-baseline gap-2 mb-2">
+                <span class="text-accent font-mono text-xs">{item.id}</span>
+                <h3 class="text-lg font-bold text-gray-900 uppercase tracking-tight group-hover:text-accent transition-colors">
+                  {item.term}
+                </h3>
+              </div>
+              <p class="text-sm font-serif italic text-accent mb-4">
+                &mdash; {item.metaphor}
+              </p>
+              <p class="text-gray-600 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-24 pt-12 border-t border-gray-100 text-center">
+          <p class="text-sm font-mono text-gray-400 uppercase tracking-widest mb-8">
+            Abita la tecnologia con le tue parole
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+             <a href="/manifesto" class="text-gray-600 hover:text-accent font-medium transition-colors">
+              Il Manifesto
+            </a>
+            <a href="/lettura-lenta" class="text-gray-600 hover:text-accent font-medium transition-colors">
+              Esercizi di Lentezza
+            </a>
+            <a href="/" class="text-accent hover:underline font-bold">
+              Torna alla Home &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

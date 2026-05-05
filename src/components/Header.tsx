@@ -119,6 +119,13 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
                 Esercizi Lenti
               </a>
               <a 
+                href="/glossario"
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors border-t border-gray-100 block"
+              >
+                Glossario
+              </a>
+              <a 
                 href="#newsletter" 
                 onClick={(e) => {
                   e.preventDefault();
@@ -134,5 +141,8 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
         </div>
       </div>
     </header>
+  );
+}
+
   );
 }
