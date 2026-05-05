@@ -9,7 +9,7 @@ featuredOrder: 5
 slug: "lettura-lenta-camus-lo-straniero"
 cover: "../../assets/images/illustrazione-lettura-lenta.png"
 excerpt: "'Oggi la mamma è morta. O forse ieri, non so.' Punto. Nient'altro."
-cta_text: "Se anche tu senti il peso dell'assurdo mentre compili un foglio Excel, iscriviti alla newsletter. Parleremo di come restare umani tra un algoritmo e l'altro."
+cta_text: "Se anche tu senti il peso dell'assurdo mentre l'algoritmo accelera, unisciti alla resistenza della lentezza. Iscriviti per ricevere il Manifesto della Tecnologia Restante."
 cta_image: "../../assets/images/ctas/cta-camus.png"
 ---
 

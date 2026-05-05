@@ -53,13 +53,22 @@ export default function NewsletterForm() {
         </button>
       </form>
       {message && (
-        <p 
-          aria-live="polite" 
-          role="status" 
-          className={`mt-4 text-sm font-mono ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}
-        >
-          {message}
-        </p>
+        <div className="mt-4">
+          <p 
+            aria-live="polite" 
+            role="status" 
+            className={`text-sm font-mono ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}
+          >
+            {message}
+          </p>
+          {status === 'success' && (
+            <p className="mt-2 text-sm">
+              <a href="/manifesto" className="text-accent font-bold hover:underline">
+                Leggi ora il Manifesto della Tecnologia Restante &rarr;
+              </a>
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

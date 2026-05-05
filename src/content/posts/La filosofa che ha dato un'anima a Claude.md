@@ -9,7 +9,7 @@ featuredOrder: 1
 slug: "la-filosofia-nell-ia"
 cover: "../../assets/images/illustrazione-bollettino.png"
 excerpt: "La prima volta che ho sentito parlare di Amanda Askell ho provato una cosa strana: una gioia dolce, quasi trattenuta. Non sorpresa — sapevo che die..."
-cta_text: "L'AI ha un'anima? Forse no, ma il modo in cui ne parliamo dice molto della nostra. Restiamo in contatto per esplorare questo sostrato filosofico."
+cta_text: "L'AI ha un'anima? Forse no, ma il modo in cui ne parliamo definisce la nostra. Unisciti al Sostrato per esplorare la filosofia dei margini e scaricare il Manifesto."
 cta_image: "../../assets/images/ctas/cta-filosofia.png"
 ---
 

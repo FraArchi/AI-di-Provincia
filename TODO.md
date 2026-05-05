@@ -9,9 +9,9 @@
 
 ## Strategia di Crescita & Community (CEO Plan)
 - [x] Creazione Lead Magnet #1: "Manifesto della Tecnologia Restante"
-- [ ] Implementazione pagina download Lead Magnet (o invio via mail post-iscrizione)
-- [ ] Creazione Lead Magnet #2: "Esercizi di Lettura Lenta"
-- [ ] Ottimizzazione CTA negli articoli esistenti (Tone of Voice saggistico)
+- [x] Implementazione pagina download Lead Magnet (Pagina `/manifesto`)
+- [x] Creazione Lead Magnet #2: "Esercizi di Lettura Lenta"
+- [x] Ottimizzazione CTA negli articoli esistenti (Tone of Voice saggistico)
 - [ ] Setup automazione "Dalla Periferia" (Newsletter settimanale)
 
 ## Polish & SEO
