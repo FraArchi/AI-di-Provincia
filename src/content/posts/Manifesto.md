@@ -13,9 +13,10 @@ cta_text: "Questo progetto è solo all'inizio. Se vuoi far parte di questa rifle
 cta_image: "../../assets/images/ctas/cta-manifesto.png"
 ---
 
-Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype
+> **Nota** — Questo articolo è stato il primo che ho pubblicato su AI di Provincia, ad aprile 2026. È rimasto com'è, perché racconta da dove sono partito. Nel frattempo ho capito una cosa che qui non dico ancora chiaramente: non sono rimasto in provincia per scelta, e questo blog non è una celebrazione della periferia. È il modo in cui trasformo un limite in materiale. Il [Manifesto](/manifesto) lo dice senza filtri.
 
 Stavo chattando con un'AI. Non per lavoro, non per un progetto preciso — stavo cercando un modo per guadagnare qualcosa sfruttando l'AI, come fanno in tanti. E mentre scrivevo e leggevo, mi sono reso conto di una cosa strana: usavo questi strumenti da anni, quasi ogni giorno, da quando ero un ragazzino. Quasi un quarto della mia vita con l'AI sempre accanto. Eppure non ne parlavo con nessuno. Non c'era nessun posto dove farlo, almeno non per uno come me.
+
 
 Il problema non è che non si parla di AI. Il problema è come se ne parla e a chi. In Italia, se non sei appassionato, se non ci lavori, se non hai tempo di seguire ogni aggiornamento, sei fuori. E quando finalmente senti qualcosa al telegiornale, è quasi sempre una storia di paura — robot che rubano lavoro, algoritmi che controllano tutto. Manca la voce di chi la usa davvero, ogni giorno, senza essere un esperto di Silicon Valley. Manca la prospettiva di chi vive in una realtà piccola e prova comunque a capire dove sta andando il mondo.
 
