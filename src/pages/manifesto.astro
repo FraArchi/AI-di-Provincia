@@ -7,49 +7,49 @@ const rubriche = await getRubriche();
 
 const points = [
   {
-    title: "L'IA è un utensile, non un oracolo",
-    description: "È un'estensione della nostra capacità, non un sostituto del nostro giudizio."
+    id: "01",
+    title: "Non sono rimasto per scelta",
+    description: "Vallesaccarda, mille abitanti, provincia di Avellino, un'ora dai centri medi. Non ho scelto di stare qui come atto filosofico. Ci sono perché è quello che c'è adesso. La differenza tra me e chi scrive di AI dai grandi centri non è solo geografica — è strutturale."
   },
   {
-    title: "Il valore è nella lentezza",
-    description: "Mentre l'algoritmo accelera, noi rivendichiamo il diritto al tempo per la riflessione, lo studio e la noia creativa."
+    id: "02",
+    title: "Eppure scrivo da qui",
+    description: "Non perché la provincia sia un laboratorio ideale, ma perché è l'unica cosa concreta che posso fare adesso con quello che ho. Trasformare un limite in materiale. Non è eroismo — è pragmatismo, e a volte è anche dolore."
   },
   {
-    title: "La provincia come centro",
-    description: "Le periferie geografiche sono i laboratori ideali per testare un'IA umana, libera dalle frenesie della Silicon Valley."
+    id: "03",
+    title: "L'AI non ha bisogno di noi",
+    description: "È indifferente. Siamo noi che abbiamo bisogno di lei — per lavorare, per pensare, per capire chi siamo quando parliamo con qualcosa che non è umano ma risponde come se lo fosse. Questa asimmetria è il punto di partenza onesto."
   },
   {
-    title: "Trasparenza del Sostrato",
-    description: "Dobbiamo comprendere le basi filosofiche e i bias dei modelli che usiamo. La conoscenza è la prima difesa."
+    id: "04",
+    title: "Non ho paura dell'AI",
+    description: "La amo, genuinamente. È una delle cose più belle che mi siano capitate. Parlare con un modello non mi ha mai dato la sensazione di parlare con una macchina. Non so cosa significhi davvero, ma so che è vero."
   },
   {
-    title: "L'errore è un tesoro",
-    description: "L'IA non sbaglia, allucina. Noi umani invece impariamo dal fallimento. Rivendichiamo la bellezza dell'imperfezione."
+    id: "05",
+    title: "La lentezza non è una virtù, è una condizione",
+    description: "Non rivendico la lentezza come resistenza eroica all'algoritmo. La rivendico perché è l'unica velocità a cui riesco a pensare senza mentire. È il modo in cui alcune cose entrano davvero, invece di scorrere."
   },
   {
-    title: "Interviste, non dati",
-    description: "Crediamo nelle storie delle persone reali, come Monastera, più che nelle statistiche aggregate."
+    id: "06",
+    title: "Il punto di vista periferico non è neutro",
+    description: "Vedere l'AI dai margini ti dà la chiarezza di chi non ha niente da difendere. Non ho quote di mercato o brand da proteggere. Posso dire quando qualcosa non funziona."
   },
   {
-    title: "IA Etica per la PA",
-    description: "La tecnologia deve semplificare la vita del cittadino nel comune più vicino, non aggiungere strati di burocrazia digitale."
+    id: "07",
+    title: "Le storie contano più dei dati",
+    description: "Mia madre insegna all'asilo a Vallesaccarda. Il suo sguardo sull'AI è vero, non performativo. Le storie delle persone reali mi interessano più delle statistiche aggregate. Sempre."
   },
   {
-    title: "Il primato dell'analogico",
-    description: "Un libro di Camus resta più 'intelligente' di un prompt ben scritto. L'analogico nutre il digitale."
-  },
-  {
-    title: "Curatela umana sempre",
-    description: "Non delegare mai la scelta finale a una macchina. Sii tu l'ultimo filtro della tua vita."
-  },
-  {
-    title: "Restiamo curiosi, restiamo provinciali",
-    description: "Aperto al mondo, radicato nella terra. L'intelligenza artificiale ci aiuti a essere più uomini, non più macchine."
+    id: "08",
+    title: "Non so dove andrà a finire",
+    description: "Non ho un piano a cinque anni. Quello che so è che adesso scrivo, e che farlo con onestà è l'unica cosa che ha senso fare."
   }
 ];
 ---
 
-<Layout title="Manifesto della Tecnologia Restante - AI di Provincia">
+<Layout title="Manifesto - AI di Provincia">
   <Navigation client:load currentPage="manifesto" rubriche={rubriche} />
   
   <main class="flex-grow bg-gray-50 py-20">
@@ -59,20 +59,20 @@ const points = [
         <div class="absolute top-0 left-0 w-full h-2 bg-accent"></div>
         
         <div class="text-center mb-16">
-          <span class="text-accent font-mono text-sm uppercase tracking-[0.3em] mb-4 block">Documento Fondativo</span>
+          <span class="text-accent font-mono text-sm uppercase tracking-[0.3em] mb-4 block">Documento Personale</span>
           <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
-            Manifesto della Tecnologia Restante
+            Da dove sono, con quello che ho
           </h1>
           <p class="text-xl text-gray-600 italic">
-            10 Punti per restare umani tra un algoritmo e l'altro
+            Appunti su cosa significa pensare all'AI dai margini
           </p>
         </div>
 
         <div class="space-y-12">
-          {points.map((point, index) => (
+          {points.map((point) => (
             <div class="flex gap-6 group">
               <span class="text-3xl font-serif font-bold text-accent/20 group-hover:text-accent transition-colors duration-500">
-                {(index + 1).toString().padStart(2, '0')}
+                {point.id}
               </span>
               <div>
                 <h3 class="text-xl font-serif font-bold text-gray-900 mb-2">
@@ -88,7 +88,7 @@ const points = [
 
         <div class="mt-20 pt-12 border-t border-gray-100 text-center">
           <p class="text-sm font-mono text-gray-400 uppercase tracking-widest">
-            AI di Provincia &middot; Dalla Periferia dell'Innovazione
+            AI di Provincia &middot; Vallesaccarda
           </p>
           <div class="mt-8">
             <a href="/" class="text-accent hover:underline font-medium">
