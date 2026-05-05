@@ -61,6 +61,36 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
               Rubriche
             </button>
             <a 
+              href="/manifesto"
+              className={`text-sm font-medium transition-colors ${
+                currentPage === 'manifesto'
+                  ? 'text-accent'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Manifesto
+            </a>
+            <a 
+              href="/lettura-lenta"
+              className={`text-sm font-medium transition-colors ${
+                currentPage === 'lettura-lenta'
+                  ? 'text-accent'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Lettura Lenta
+            </a>
+            <a 
+              href="/glossario"
+              className={`text-sm font-medium transition-colors ${
+                currentPage === 'glossario'
+                  ? 'text-accent'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Glossario
+            </a>
+            <a 
               href="#newsletter" 
               onClick={(e) => {
                 e.preventDefault();
@@ -141,8 +171,5 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
         </div>
       </div>
     </header>
-  );
-}
-
   );
 }
