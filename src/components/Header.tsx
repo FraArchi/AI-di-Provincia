@@ -105,6 +105,13 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
                 Rubriche
               </button>
               <a 
+                href="/manifesto"
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors border-t border-gray-100 block"
+              >
+                Manifesto
+              </a>
+              <a 
                 href="#newsletter" 
                 onClick={(e) => {
                   e.preventDefault();
