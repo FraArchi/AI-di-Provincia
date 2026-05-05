@@ -112,6 +112,13 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
                 Manifesto
               </a>
               <a 
+                href="/lettura-lenta"
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors border-t border-gray-100 block"
+              >
+                Esercizi Lenti
+              </a>
+              <a 
                 href="#newsletter" 
                 onClick={(e) => {
                   e.preventDefault();
