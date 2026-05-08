@@ -1,12 +1,12 @@
 ---
 title: "Lo straniero e la macchina"
-subtitle: "Lettura Lenta — L'étranger, Albert Camus"
+subtitle: "Margini di Pagina — L'étranger, Albert Camus"
 author: "Francesco Archidiacono"
-category: "Lettura lenta"
+category: "Margini di Pagina"
 published_date: "2026-04-23T08:00:00.000Z"
 featured: true
 featuredOrder: 5
-cover: "../../assets/images/illustrazione-lettura-lenta.png"
+cover: "../../assets/images/illustrazione-margini-di-pagina.png"
 excerpt: "'Oggi la mamma è morta. O forse ieri, non so.' Punto. Nient'altro."
 cta_text: "Se anche tu senti il peso dell'assurdo mentre l'algoritmo accelera, unisciti alla resistenza della lentezza. Iscriviti per ricevere il Manifesto della Tecnologia Restante."
 cta_image: "../../assets/images/ctas/cta-camus.png"

@@ -1,10 +1,10 @@
-# 📖 Esercizi di Lettura Lenta
+# 📖 Margini di Pagina
 ## Guida alla profondità nell'era dell'attenzione frammentata
 
 L'intelligenza artificiale può riassumere un libro in tre secondi. Noi, invece, impiegheremo trenta giorni per leggerlo. Perché la comprensione non è un dato, è un'esperienza.
 
 ### 1. Il rito della prima pagina
-Non iniziare a leggere se non hai almeno 20 minuti di silenzio garantito. Spegni il telefono o lascialo in un'altra stanza. La lettura lenta inizia con un atto di separazione.
+Non iniziare a leggere se non hai almeno 20 minuti di silenzio garantito. Spegni il telefono o lascialo in un'altra stanza. La rubrica Margini di Pagina inizia con un atto di separazione.
 
 ### 2. Il taccuino analogico
 Leggi con una penna in mano. Sottolinea non quello che è importante, ma quello che ti risuona dentro. Annota a margine i tuoi dubbi, le tue rabbie, le tue gioie. Trasforma il libro in un dialogo.

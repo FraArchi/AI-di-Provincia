@@ -71,14 +71,14 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
               Manifesto
             </a>
             <a 
-              href="/lettura-lenta"
+              href="/margini-di-pagina"
               className={`text-sm font-medium transition-colors ${
-                currentPage === 'lettura-lenta'
+                currentPage === 'margini-di-pagina'
                   ? 'text-accent'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Lettura Lenta
+              Margini di Pagina
             </a>
             <a 
               href="/glossario"
@@ -142,11 +142,11 @@ export default function Header({ currentPage, onOpenRubriche }: HeaderProps) {
                 Manifesto
               </a>
               <a 
-                href="/lettura-lenta"
+                href="/margini-di-pagina"
                 onClick={() => setIsMenuOpen(false)} 
                 className="text-left px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-accent transition-colors border-t border-gray-100 block"
               >
-                Esercizi Lenti
+                Margini di Pagina
               </a>
               <a 
                 href="/glossario"

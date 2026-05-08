@@ -8,7 +8,7 @@ La homepage dovrà bilanciare la freschezza degli aggiornamenti con l'importanza
 
 *   **Header / Hero:** L'ultimo pezzo lungo (es. *Voci dal territorio* o *Il Comune più vicino*). L'identità visiva e testuale principale.
 *   **Fascia Laterale / Widget:** "Il Bollettino dell'IA" (ultimi 3-5 report brevi generati dal *local-brain*).
-*   **Feed Centrale:** Un mix ordinato cronologicamente delle altre rubriche (*Ho provato per voi*, *La settimana in provincia*, *Lettura lenta*).
+*   **Feed Centrale:** Un mix ordinato cronologicamente delle altre rubriche (*Ho provato per voi*, *La settimana in provincia*, *Margini di Pagina*).
 
 ---
 
@@ -44,7 +44,7 @@ Ecco il dettaglio di ogni rubrica, con frequenza suggerita, format e focus edito
 *   **Focus:** Utilità pratica e immediata per mestieri specifici (l'artigiano, l'agricoltore, il commerciante, la segreteria della scuola).
 *   **Posizionamento:** Feed principale, categoria "Guide/Strumenti".
 
-### 📖 Lettura lenta
+### 📖 Margini di Pagina
 *   **Origine:** Recensioni e riflessioni su libri/saggi lunghi.
 *   **Frequenza:** Mensile.
 *   **Format:** Saggio breve, recensione ragionata. Stile *Longform*. Un invito a rallentare.
@@ -63,7 +63,7 @@ Ecco il dettaglio di ogni rubrica, con frequenza suggerita, format e focus edito
 *   Quindi il quadro rubriche aggiornato diventa:
 
 * Sostrato — filosofia e fondamenti
-* Lettura Lenta — partenza con Camus
+* Margini di Pagina — partenza con Camus
 * Voci dal territorio — interviste
 * Dalla Periferia — rassegna settimanale
 * Il Bollettino dell'IA — automatizzato

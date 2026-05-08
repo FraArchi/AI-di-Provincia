@@ -71,8 +71,8 @@ export default function NewsletterForm() {
                   </a>
                 </li>
                 <li>
-                  <a href="/lettura-lenta" className="text-accent font-bold hover:underline">
-                    📖 Esercizi di Lettura Lenta &rarr;
+                  <a href="/margini-di-pagina" className="text-accent font-bold hover:underline">
+                    📖 Margini di Pagina &rarr;
                   </a>
                 </li>
                 <li>
