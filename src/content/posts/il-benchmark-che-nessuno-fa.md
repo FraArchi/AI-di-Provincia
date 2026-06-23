@@ -1,5 +1,5 @@
 ---
-title: "Il benchmark che nessuno fa"
+title: "Il benchmark che nessuno fa-AI o niente"
 subtitle: "AI o niente"
 author: "Francesco Archidiacono"
 category: "Sostrato"
