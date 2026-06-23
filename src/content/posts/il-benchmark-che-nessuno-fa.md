@@ -1,12 +1,12 @@
 ---
-title: "Il benchmark che nessuno fa-AI o niente"
+title: "Il benchmark che nessuno fa"
 subtitle: "AI o niente"
 author: "Francesco Archidiacono"
 category: "Sostrato"
 published_date: "2026-06-23"
 featured: false
 slug: "il-benchmark-che-nessuno-fa"
-cover: "/home/fra-arch1/AI-di-Provincia/src/assets/images/telefono-rosso.png"
+cover: "../../assets/images/illustrazione-manifesto.png"
 excerpt: "Tutti misurano quanto un'AI sa ragionare, programmare, risolvere. Quasi nessuno misura quanto sa stare vicino qualcuno che sta male. Ho provato farlo io, con una frase vera."
 ---
 
