@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation';
 import ArticleCTA from '../../components/ArticleCTA.astro';
+import ContactBox from '../../components/ContactBox.astro';
+import GiscusComments from '../../components/GiscusComments.astro';
 import { getRubriche } from '../../lib/utils';
 import { ArrowLeft } from 'lucide-react';
 import { getCollection, render } from 'astro:content';
@@ -136,9 +138,13 @@ const formatDate = (dateString: string | Date) => {
             <Content />
           </div>
 
+          <ContactBox />
+
           {post.data.cta_text && (
             <ArticleCTA text={post.data.cta_text} image={post.data.cta_image} />
           )}
+
+          <GiscusComments />
         </article>
       </div>
     </div>
