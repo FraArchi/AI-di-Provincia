@@ -4,8 +4,7 @@ subtitle: "Una dichiarazione d'intenti, senza hype"
 author: "Francesco Archidiacono"
 category: "Manifesto"
 published_date: "2026-04-16"
-featured: true
-featuredOrder: 3
+featured: false
 slug: "perche-ho-creato-ai-di-provincia"
 cover: "../../assets/images/illustrazione-manifesto.png"
 excerpt: "Perché ho creato AI di Provincia Una dichiarazione d'intenti, senza hype"
