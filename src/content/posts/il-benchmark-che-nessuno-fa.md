@@ -6,7 +6,7 @@ category: "Sostrato"
 published_date: "2026-06-23"
 featured: false
 slug: "il-benchmark-che-nessuno-fa"
-cover: "../../assets/images/illustrazione-manifesto.png"
+cover: "../../assets/images/telefono-rosso.png"
 excerpt: "Tutti misurano quanto un'AI sa ragionare, programmare, risolvere. Quasi nessuno misura quanto sa stare vicino qualcuno che sta male. Ho provato farlo io, con una frase vera."
 ---
 
