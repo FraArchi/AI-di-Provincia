@@ -1,32 +1,7 @@
 import type { APIRoute } from 'astro';
-import fs from 'fs';
-import path from 'path';
+import { kv } from '@vercel/kv';
 
-const COMMENTS_FILE = path.join(process.cwd(), 'data', 'comments.json');
-
-// Ensure data directory exists
-function ensureDataDir() {
-  const dataDir = path.dirname(COMMENTS_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(COMMENTS_FILE)) {
-    fs.writeFileSync(COMMENTS_FILE, JSON.stringify([], null, 2));
-  }
-}
-
-// Read comments
-function readComments() {
-  ensureDataDir();
-  const data = fs.readFileSync(COMMENTS_FILE, 'utf-8');
-  return JSON.parse(data);
-}
-
-// Write comments
-function writeComments(comments: any[]) {
-  ensureDataDir();
-  fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2));
-}
+const COMMENTS_KEY = 'blog:comments';
 
 export const GET: APIRoute = async ({ url }) => {
   const slug = url.searchParams.get('slug');
@@ -38,10 +13,10 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  const comments = readComments();
-  const postComments = comments.filter((c: any) => c.slug === slug);
+  const postKey = `${COMMENTS_KEY}:${slug}`;
+  const comments = await kv.get<any[]>(postKey) || [];
 
-  return new Response(JSON.stringify(postComments), {
+  return new Response(JSON.stringify(comments), {
     status: 200,
     headers: { 'Content-Type': 'application/json' }
   });
@@ -66,9 +41,11 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const comments = readComments();
+    const postKey = `${COMMENTS_KEY}:${slug}`;
+    const comments = await kv.get<any[]>(postKey) || [];
+
     const newComment = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       slug,
       username: username.trim(),
       text: text.trim(),
@@ -76,13 +53,14 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     comments.push(newComment);
-    writeComments(comments);
+    await kv.set(postKey, comments);
 
     return new Response(JSON.stringify({ success: true, comment: newComment }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('POST /api/comments error:', error);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
@@ -93,18 +71,19 @@ export const POST: APIRoute = async ({ request }) => {
 export const DELETE: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { id } = body;
+    const { slug, id } = body;
 
-    if (!id) {
-      return new Response(JSON.stringify({ error: 'Comment ID required' }), {
+    if (!slug || !id) {
+      return new Response(JSON.stringify({ error: 'Slug and comment ID required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    const comments = readComments();
+    const postKey = `${COMMENTS_KEY}:${slug}`;
+    const comments = await kv.get<any[]>(postKey) || [];
     const filtered = comments.filter((c: any) => c.id !== id);
-    writeComments(filtered);
+    await kv.set(postKey, filtered);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
