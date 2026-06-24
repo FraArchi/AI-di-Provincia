@@ -1,11 +1,24 @@
 import type { APIRoute } from 'astro';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 
+function getRedis(): Redis {
+  const redisUrl = process.env.REDIS_URL;
+  if (!redisUrl) {
+    return Redis.fromEnv();
+  }
+  const url = new URL(redisUrl);
+  return new Redis({
+    url: `https://${url.hostname}`,
+    token: url.password,
+  });
+}
+
+const redis = getRedis();
 const COMMENTS_KEY = 'blog:comments';
 
 export const GET: APIRoute = async ({ url }) => {
   const slug = url.searchParams.get('slug');
-  
+
   if (!slug) {
     return new Response(JSON.stringify({ error: 'Slug required' }), {
       status: 400,
@@ -14,7 +27,7 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   const postKey = `${COMMENTS_KEY}:${slug}`;
-  const comments = await kv.get<any[]>(postKey) || [];
+  const comments = await redis.get<any[]>(postKey) || [];
 
   return new Response(JSON.stringify(comments), {
     status: 200,
@@ -42,7 +55,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const postKey = `${COMMENTS_KEY}:${slug}`;
-    const comments = await kv.get<any[]>(postKey) || [];
+    const comments = await redis.get<any[]>(postKey) || [];
 
     const newComment = {
       id: crypto.randomUUID(),
@@ -53,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     comments.push(newComment);
-    await kv.set(postKey, comments);
+    await redis.set(postKey, comments);
 
     return new Response(JSON.stringify({ success: true, comment: newComment }), {
       status: 201,
@@ -81,9 +94,9 @@ export const DELETE: APIRoute = async ({ request }) => {
     }
 
     const postKey = `${COMMENTS_KEY}:${slug}`;
-    const comments = await kv.get<any[]>(postKey) || [];
+    const comments = await redis.get<any[]>(postKey) || [];
     const filtered = comments.filter((c: any) => c.id !== id);
-    await kv.set(postKey, filtered);
+    await redis.set(postKey, filtered);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
