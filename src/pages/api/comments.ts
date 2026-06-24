@@ -64,7 +64,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     comments.push(newComment);
 
-    // Save updated comments to blob
     await put(`${COMMENTS_PREFIX}${slug}.json`, JSON.stringify({ comments }), {
       contentType: 'application/json',
       access: 'public',
@@ -91,7 +90,7 @@ export const DELETE: APIRoute = async ({ request }) => {
     if (!slug || !id) {
       return new Response(JSON.stringify({ error: 'Slug and comment ID required' }), {
         status: 400,
-        headers: { 'Content-Type: 'application/json' }
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
@@ -108,6 +107,7 @@ export const DELETE: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('DELETE error:', error);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
