@@ -1,19 +1,21 @@
 import type { APIRoute } from 'astro';
-import { Redis } from '@upstash/redis';
+import Redis from 'ioredis';
+
+let redis: Redis | null = null;
 
 function getRedis(): Redis {
-  const redisUrl = process.env.REDIS_URL;
-  if (!redisUrl) {
-    return Redis.fromEnv();
+  if (!redis) {
+    const url = process.env.REDIS_URL;
+    console.log('[comments] REDIS_URL set:', !!url);
+    redis = new Redis(url, {
+      maxRetriesPerRequest: 3,
+      enableReadyCheck: false,
+      lazyConnect: true,
+    });
   }
-  const url = new URL(redisUrl);
-  return new Redis({
-    url: `https://${url.hostname}`,
-    token: url.password,
-  });
+  return redis;
 }
 
-const redis = getRedis();
 const COMMENTS_KEY = 'blog:comments';
 
 export const GET: APIRoute = async ({ url }) => {
@@ -26,13 +28,22 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  const postKey = `${COMMENTS_KEY}:${slug}`;
-  const comments = await redis.get<any[]>(postKey) || [];
+  try {
+    const postKey = `${COMMENTS_KEY}:${slug}`;
+    const data = await getRedis().get(postKey);
+    const comments = data ? JSON.parse(data) : [];
 
-  return new Response(JSON.stringify(comments), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' }
-  });
+    return new Response(JSON.stringify(comments), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (error) {
+    console.error('GET error:', error);
+    return new Response(JSON.stringify({ error: 'Internal error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 };
 
 export const POST: APIRoute = async ({ request }) => {
@@ -55,7 +66,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const postKey = `${COMMENTS_KEY}:${slug}`;
-    const comments = await redis.get<any[]>(postKey) || [];
+    const data = await getRedis().get(postKey);
+    const comments = data ? JSON.parse(data) : [];
 
     const newComment = {
       id: crypto.randomUUID(),
@@ -66,14 +78,14 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     comments.push(newComment);
-    await redis.set(postKey, comments);
+    await getRedis().set(postKey, JSON.stringify(comments));
 
     return new Response(JSON.stringify({ success: true, comment: newComment }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
-    console.error('POST /api/comments error:', error);
+    console.error('POST error:', error);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
@@ -94,9 +106,10 @@ export const DELETE: APIRoute = async ({ request }) => {
     }
 
     const postKey = `${COMMENTS_KEY}:${slug}`;
-    const comments = await redis.get<any[]>(postKey) || [];
+    const data = await getRedis().get(postKey);
+    const comments = data ? JSON.parse(data) : [];
     const filtered = comments.filter((c: any) => c.id !== id);
-    await redis.set(postKey, filtered);
+    await getRedis().set(postKey, JSON.stringify(filtered));
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
