@@ -1,22 +1,19 @@
 import type { APIRoute } from 'astro';
-import Redis from 'ioredis';
+import { put, list } from '@vercel/blob';
 
-let redis: Redis | null = null;
+const COMMENTS_PREFIX = 'blog/comments/';
 
-function getRedis(): Redis {
-  if (!redis) {
-    const url = process.env.REDIS_URL;
-    console.log('[comments] REDIS_URL set:', !!url);
-    redis = new Redis(url, {
-      maxRetriesPerRequest: 3,
-      enableReadyCheck: false,
-      lazyConnect: true,
-    });
+async function getCommentsForSlug(slug: string): Promise<any[]> {
+  const { blobs } = await list({ prefix: `${COMMENTS_PREFIX}${slug}.json`, limit: 1 });
+  if (blobs.length > 0) {
+    const response = await fetch(blobs[0].url);
+    if (response.ok) {
+      const data = await response.json();
+      return data.comments || [];
+    }
   }
-  return redis;
+  return [];
 }
-
-const COMMENTS_KEY = 'blog:comments';
 
 export const GET: APIRoute = async ({ url }) => {
   const slug = url.searchParams.get('slug');
@@ -28,22 +25,12 @@ export const GET: APIRoute = async ({ url }) => {
     });
   }
 
-  try {
-    const postKey = `${COMMENTS_KEY}:${slug}`;
-    const data = await getRedis().get(postKey);
-    const comments = data ? JSON.parse(data) : [];
+  const comments = await getCommentsForSlug(slug);
 
-    return new Response(JSON.stringify(comments), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  } catch (error) {
-    console.error('GET error:', error);
-    return new Response(JSON.stringify({ error: 'Internal error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+  return new Response(JSON.stringify(comments), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
 };
 
 export const POST: APIRoute = async ({ request }) => {
@@ -65,9 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const postKey = `${COMMENTS_KEY}:${slug}`;
-    const data = await getRedis().get(postKey);
-    const comments = data ? JSON.parse(data) : [];
+    const comments = await getCommentsForSlug(slug);
 
     const newComment = {
       id: crypto.randomUUID(),
@@ -78,7 +63,12 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     comments.push(newComment);
-    await getRedis().set(postKey, JSON.stringify(comments));
+
+    // Save updated comments to blob
+    await put(`${COMMENTS_PREFIX}${slug}.json`, JSON.stringify({ comments }), {
+      contentType: 'application/json',
+      access: 'public',
+    });
 
     return new Response(JSON.stringify({ success: true, comment: newComment }), {
       status: 201,
@@ -101,15 +91,17 @@ export const DELETE: APIRoute = async ({ request }) => {
     if (!slug || !id) {
       return new Response(JSON.stringify({ error: 'Slug and comment ID required' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type: 'application/json' }
       });
     }
 
-    const postKey = `${COMMENTS_KEY}:${slug}`;
-    const data = await getRedis().get(postKey);
-    const comments = data ? JSON.parse(data) : [];
+    const comments = await getCommentsForSlug(slug);
     const filtered = comments.filter((c: any) => c.id !== id);
-    await getRedis().set(postKey, JSON.stringify(filtered));
+
+    await put(`${COMMENTS_PREFIX}${slug}.json`, JSON.stringify({ comments: filtered }), {
+      contentType: 'application/json',
+      access: 'public',
+    });
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
