@@ -14,27 +14,23 @@ const { slug } = Astro.props;
   
   <!-- Comment form -->
   <div class="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+    <h4 class="text-lg font-serif font-bold text-gray-900 mb-4">Lascia un commento</h4>
     <form id="comment-form" class="space-y-4">
       <div>
-        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
-          Nome utente
-        </label>
+        <label for="username" class="block text-sm font-mono text-gray-600 mb-1">Nome o Username</label>
         <input
           type="text"
           id="username"
           name="username"
-          maxlength="50"
           required
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-          placeholder="Il tuo nome"
+          placeholder="Es. Mario Rossi"
         />
       </div>
       <div>
-        <label for="comment-text" class="block text-sm font-medium text-gray-700 mb-2">
-          Commento
-        </label>
+        <label for="text" class="block text-sm font-mono text-gray-600 mb-1">Commento</label>
         <textarea
-          id="comment-text"
+          id="text"
           name="text"
           rows="4"
           maxlength="2000"
@@ -55,8 +51,10 @@ const { slug } = Astro.props;
   </div>
 
   <!-- Comments list -->
-  <div id="comments-list" class="space-y-4">
-    <p class="text-gray-500 text-center py-8">Caricamento commenti...</p>
+  <div id="comments-list" class="space-y-6">
+    <div class="text-center py-8">
+      <span class="animate-pulse text-gray-500">Caricamento commenti...</span>
+    </div>
   </div>
 </div>
 
@@ -65,19 +63,31 @@ const { slug } = Astro.props;
   const messageEl = document.getElementById('form-message');
   const commentsList = document.getElementById('comments-list');
 
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   // Load comments
   async function loadComments() {
     try {
       const response = await fetch(`/api/comments?slug=${encodeURIComponent(slug)}`);
+      if (!response.ok) throw new Error('Errore nel recupero commenti');
+      
       const comments = await response.json();
       
-      if (comments.length === 0) {
+      if (!comments || comments.length === 0) {
         commentsList.innerHTML = '<p class="text-gray-500 text-center py-8">Nessun commento ancora. Sii il primo a commentare!</p>';
         return;
       }
-
+      
       commentsList.innerHTML = comments
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
         .map(comment => {
           const date = new Date(comment.timestamp);
           const formattedDate = date.toLocaleDateString('it-IT', {
@@ -94,7 +104,7 @@ const { slug } = Astro.props;
                 <span class="font-medium text-gray-900">${escapeHtml(comment.username)}</span>
                 <span class="text-xs text-gray-500">${formattedDate}</span>
               </div>
-              <p class="text-gray-700 whitespace-pre-wrap">${escapeHtml(comment.text)}</p>
+              <p class="text-gray-700 whitespace-pre-wrap leading-relaxed">${escapeHtml(comment.text)}</p>
             </div>
           `;
         })
@@ -104,14 +114,7 @@ const { slug } = Astro.props;
     }
   }
 
-  // Escape HTML to prevent XSS
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  // Submit comment
+  // Handle form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -128,17 +131,17 @@ const { slug } = Astro.props;
 
       if (response.ok) {
         messageEl.textContent = 'Commento pubblicato!';
-        messageEl.className = 'text-sm text-green-600';
+        messageEl.className = 'text-sm text-green-600 mt-2 block';
         messageEl.classList.remove('hidden');
         form.reset();
         setTimeout(() => messageEl.classList.add('hidden'), 3000);
-        loadComments();
+        await loadComments();
       } else {
         throw new Error('Failed to post comment');
       }
     } catch (error) {
       messageEl.textContent = 'Errore nella pubblicazione. Riprova.';
-      messageEl.className = 'text-sm text-red-600';
+      messageEl.className = 'text-sm text-red-600 mt-2 block';
       messageEl.classList.remove('hidden');
     }
   });
