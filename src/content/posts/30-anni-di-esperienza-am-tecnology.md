@@ -60,15 +60,6 @@ Il mio contributo parte da un'intuizione tecnica che però, al momento dello sco
 
 - **Riflessione Postuma:** Ho identificato questo episodio come parte di un "paradosso dell'autorità", accomunandolo ad altre esperienze negative con mio padre e il mio psicoterapeuta.
 
-### L'Assistente (ChatGPT)
-
-L'intelligenza artificiale ha agito da mediatore, cercando di darmi strumenti sia tecnici che psicologici.
-
-- **Validazione Tecnica:** Mi ha dato ragione, spiegando che in sicurezza informatica **non esiste il 100%** ma solo la "gestione del rischio". Ha confermato che, sebbene la VPN offra cifratura e tunneling, non protegge da malware, phishing o se l'endpoint è compromesso.
-
-- **Analisi della Dinamica:** Ha chiarito che il capo non mi ha ripreso necessariamente perché avevo torto, ma perché ho dato un **giudizio assoluto senza argomentazione immediata**. Ha interpretato il richiamo ai "30 anni di esperienza" come una difesa della gerarchia e del territorio professionale.
-
-- **Strategia di Crescita:** Mi ha suggerito di non andare in "modalità emotiva" e di cambiare approccio comunicativo: invece di dire "no", dovrei partire da un punto di accordo per poi aggiungere una limitazione tecnica (es. "Sì, è sicura per la cifratura, ma cosa succede se l'endpoint è compromesso?").
 
 ---
 
