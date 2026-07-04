@@ -18,7 +18,7 @@ excerpt: "È sempre lo stesso discorso del 'io sono esperto e sono migliore e ho
 
 Come a voler dire: Io sono migliore, tu non sai niente, ascolta e non discutere.
 
-E infine, quello che definisco più altisonante tra questi 3 esempi, è quello che succede nel marzo 2026, quando lavoro in prova da "AM Tecnology" (nemmeno a scrivere technology con la "H"...). 
+E infine, quello che definisco più altisonante tra questi 3 esempi, è quello che succede nel marzo 2026, quando lavoro in prova presso una piccola azienda di informatica per PMI e privati, in provincia di Avellino. 
 
 Cosa succede? Lui ripetutamente, facendo sempre la buona faccia quindi per così dire in gergo "Gaslighting", dice spesso: io sono esperto, ho 30 anni di esperienza, ma tu chi sei, come fai a parlare, come fai a compararti con me quando conosci appena l'informatica da forse nemmeno un anno...
 
@@ -38,9 +38,9 @@ Ora mi sono reso conto che questo video è di 6 mesi fa, oggi è il 4 luglio 202
 
 ## Il Conflitto Tecnico: Ricostruzione dello Scontro
 
-Dalle fonti fornite emerge un quadro dettagliato di uno scontro professionale e umano avvenuto presso la **AM Technology**, ricostruito attraverso i miei appunti personali e la conversazione avuta con l'assistente (ChatGPT).
+Dalle fonti fornite emerge un quadro dettagliato di uno scontro professionale e umano avvenuto presso questa piccola realtà informatica della provincia di Avellino, ricostruito attraverso i miei appunti personali e la conversazione avuta con l'assistente (ChatGPT).
 
-### Il Capo (AM Technology)
+### Il Capo
 
 Il datore di lavoro ha basato la sua posizione quasi interamente sul **principio di autorità** e sull'esperienza.
 
@@ -141,9 +141,9 @@ Beh, appunto, caspita, visto che comunque qualcuno deve vederle, decidi qual è 
 
 ---
 
-## L'Illusione della Sicurezza: Smontare il Servizio AM Technology
+## L'Illusione della Sicurezza: Quando la Provincia Vende Sicurezza
 
-Se il "capo" applica il suo discorso al servizio di **Firewall e VPN** che vende alle aziende medio-piccole, la situazione tecnicamente non migliora; anzi, le criticità evidenziate nelle fonti diventano ancora più specifiche e "smontabili".
+Se il "capo" applica il suo discorso al servizio di **Firewall e VPN** che questa piccola azienda di provincia vende alle aziende medio-piccole del territorio, la situazione tecnicamente non migliora; anzi, le criticità evidenziate nelle fonti diventano ancora più specifiche e "smontabili".
 
 Ecco come cambiano i fatti e quali sono le domande tecniche da porsi per invalidare la sua tesi di "sicurezza assoluta" in questo contesto specifico:
 
@@ -245,7 +245,7 @@ In conclusione, il fatto che si sia ridotto a una domanda così semplicistica pe
 
 ## Il Quiz: Chi Aveva Ragione?
 
-Alla fine, ho chiesto a NotebookLM di creare un quiz per schernire le affermazioni del capo di AM Technology, basandosi su tutto quello che abbiamo detto e analizzato per smontare le sue affermazioni. 
+Alla fine, ho chiesto a NotebookLM di creare un quiz basandosi su tutto quello che abbiamo detto e analizzato per smontare le affermazioni del capo di questa piccola azienda informatica. 
 
 Così che forse rispondendo a delle domande, potrebbe arrivare a capire che chi aveva ragione non era l'esperto del settore di 30 anni di esperienza, ma bensì chi è oggettivamente più umile, e non si affida solamente a quello che gli è stato detto sempre, in quanto non rappresenta per forza la verità. E quindi chi si basa su un approccio che ricerca la più sincera verità, senza fare gli sbruffoni o i presuntuosi.
 
