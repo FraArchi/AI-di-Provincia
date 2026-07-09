@@ -7,10 +7,9 @@ published_date: "2026-07-09T08:00:00.000Z"
 mainFeatured: false
 featured: true
 featuredOrder: 2
-cover: "../../assets/images/da-definire.png"
+cover: "../../assets/images/promessa-di-cristallo.png"
 excerpt: "Un pensiero che mi salta da una parte all'altra della testa da qualche giorno: l'AI è arrivata a un punto di stallo. Non solo tecnologico — di fiducia. E forse non è un caso."
 cta_text: "L'entusiasmo si è sgonfiato, ma la domanda resta aperta. Unisciti ad AI di Provincia per leggere quello che i grandi capi non dicono nelle interviste."
-cta_image: "../../assets/images/ctas/cta-periferia.png"
 ---
 
 > **Io penso che hanno fatto più soldi quando hanno cercato di fare del bene per l'umanità di quanto stanno facendo adesso per i soldi.**
