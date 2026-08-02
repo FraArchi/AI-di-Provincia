@@ -5,9 +5,10 @@ interface RubricheSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   rubriche: CategoryArticle[];
+  lang?: 'it' | 'en';
 }
 
-export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheSidebarProps) {
+export default function RubricheSidebar({ isOpen, onClose, rubriche, lang = 'it' }: RubricheSidebarProps) {
   return (
     <>
       {/* Overlay scuro quando aperto */}
@@ -25,7 +26,9 @@ export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheS
         }`}
       >
         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h2 className="text-xl font-serif font-bold text-gray-900">Tutte le Rubriche</h2>
+          <h2 className="text-xl font-serif font-bold text-gray-900">
+            {lang === 'en' ? 'All Sections' : 'Tutte le Rubriche'}
+          </h2>
           <button 
             onClick={onClose}
             className="text-gray-400 hover:text-accent transition-colors bg-white p-1 rounded-full shadow-sm"
@@ -44,7 +47,7 @@ export default function RubricheSidebar({ isOpen, onClose, rubriche }: RubricheS
               
               {/* Ultimo articolo della rubrica (massimo 1) */}
               <a
-                href={`/post/${article.slug}`}
+                href={lang === 'en' ? `/en/post/${article.slug}` : `/post/${article.slug}`}
                 onClick={onClose}
                 className="text-left w-full hover:bg-gray-50 p-3 -mx-3 rounded-lg transition-colors flex items-start gap-3 group/link"
               >

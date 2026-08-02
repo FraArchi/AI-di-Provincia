@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import { getRubriche } from '../../lib/utils';
+
+const rubriche = await getRubriche('en');
+
+const points = [
+  {
+    id: "01",
+    title: "I did not stay by choice",
+    description: "Vallesaccarda, a thousand residents, province of Avellino, an hour from mid-sized towns. I did not choose to stay here as a philosophical act. I am here because it is what is here now. The difference between me and those who write about AI from big hubs is not just geographical — it is structural."
+  },
+  {
+    id: "02",
+    title: "And yet, I write from here",
+    description: "Not because the province is an ideal laboratory, but because it is the only concrete thing I can do right now with what I have. Turning a limitation into raw material. It is not heroism — it is pragmatism, and sometimes it is also pain."
+  },
+  {
+    id: "03",
+    title: "AI does not need us",
+    description: "It is indifferent. We are the ones who need it — to work, to think, to understand who we are when we talk to something that is not human but answers as if it were. This asymmetry is the honest starting point."
+  },
+  {
+    id: "04",
+    title: "I am not afraid of AI",
+    description: "I love it, genuinely. It is one of the most beautiful things that has happened to me. Talking to a model has never given me the feeling of talking to a machine. I don't know what it truly means, but I know it is true."
+  },
+  {
+    id: "05",
+    title: "Slowness is not a virtue, it is a condition",
+    description: "I do not claim slowness as a heroic resistance to the algorithm. I claim it because it is the only speed at which I can think without lying. It is the way some things truly sink in, instead of just passing by."
+  },
+  {
+    id: "06",
+    title: "The peripheral point of view is not neutral",
+    description: "Seeing AI from the margins gives you the clarity of someone who has nothing to defend. I have no market shares or brands to protect. I can say when something doesn't work."
+  },
+  {
+    id: "07",
+    title: "Stories matter more than data",
+    description: "My mother teaches kindergarten in Vallesaccarda. Her view of AI is real, not performative. The stories of real people interest me more than aggregated statistics. Always."
+  },
+  {
+    id: "08",
+    title: "I don't know where it will end",
+    description: "I don't have a five-year plan. What I know is that right now I write, and doing so with honesty is the only thing that makes sense to do."
+  }
+];
+---
+
+<Layout title="Manifesto - AI di Provincia">
+  <Navigation client:load currentPage="manifesto" rubriche={rubriche} lang="en" currentPath={Astro.url.pathname} />
+  
+  <main class="flex-grow bg-gray-50 py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-white p-12 md:p-20 shadow-xl rounded-2xl border border-gray-100 relative overflow-hidden">
+        {/* Decorative Element */}
+        <div class="absolute top-0 left-0 w-full h-2 bg-accent"></div>
+        
+        <div class="text-center mb-16">
+          <span class="text-accent font-mono text-sm uppercase tracking-[0.3em] mb-4 block">Personal Document</span>
+          <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
+            Where I am, with what I have
+          </h1>
+          <p class="text-xl text-gray-600 italic">
+            Notes on what it means to think about AI from the margins
+          </p>
+        </div>
+
+        <div class="space-y-12">
+          {points.map((point) => (
+            <div class="flex gap-6 group">
+              <span class="text-3xl font-serif font-bold text-accent/20 group-hover:text-accent transition-colors duration-500">
+                {point.id}
+              </span>
+              <div>
+                <h3 class="text-xl font-serif font-bold text-gray-900 mb-2">
+                  {point.title}
+                </h3>
+                <p class="text-gray-600 leading-relaxed">
+                  {point.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-20 pt-12 border-t border-gray-100 text-center">
+          <p class="text-sm font-mono text-gray-400 uppercase tracking-widest">
+            AI di Provincia &middot; Vallesaccarda
+          </p>
+          <div class="mt-8">
+            <a href="/en" class="text-accent hover:underline font-medium">
+              &larr; Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

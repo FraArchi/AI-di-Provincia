@@ -1,5 +1,26 @@
 ---
 import NewsletterForm from './NewsletterForm';
+
+const lang = Astro.currentLocale || 'it';
+
+const t = {
+  it: {
+    badge: "Pensiero Lento",
+    title: "Restiamo in contatto",
+    desc1: "Una lettera periodica tra umanità e algoritmi.",
+    desc2: "Niente spam, solo riflessioni per chi vive fuori dai centri tecnologici.",
+    followTelegram: "Seguimi anche su",
+    unsub: "Puoi disiscriverti in ogni momento. Rispetto la tua attenzione."
+  },
+  en: {
+    badge: "Slow Thinking",
+    title: "Let's stay in touch",
+    desc1: "A periodic letter between humanity and algorithms.",
+    desc2: "No spam, only reflections for those who live away from tech hubs.",
+    followTelegram: "Also follow me on",
+    unsub: "You can unsubscribe at any time. I respect your attention."
+  }
+}[lang];
 ---
 
 <section id="newsletter" class="bg-gray-50 border-t border-b border-gray-200 py-24 px-6">
@@ -10,22 +31,22 @@ import NewsletterForm from './NewsletterForm';
         <circle cx="160" cy="20" r="6" class="fill-accent" />
       </svg>
       <div class="absolute -top-6 -right-12 transform rotate-12 bg-white px-3 py-1 border-2 border-gray-900 text-xs font-mono uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        Pensiero Lento
+        {t.badge}
       </div>
     </div>
 
-    <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Restiamo in contatto</h2>
+    <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">{t.title}</h2>
     <p class="text-xl text-gray-600 mb-12 max-w-2xl leading-relaxed">
-      Una lettera periodica tra umanità e algoritmi. <br class="hidden md:block" />
-      Niente spam, solo riflessioni per chi vive fuori dai centri tecnologici.
+      {t.desc1} <br class="hidden md:block" />
+      {t.desc2}
       <br />
-      <span class="text-sm">Seguimi anche su <a href="https://t.me/AI_di_Provincia" target="_blank" rel="noopener noreferrer" class="text-accent underline hover:no-underline font-medium">Telegram: AI di Provincia</a></span>
+      <span class="text-sm">{t.followTelegram} <a href="https://t.me/AI_di_Provincia" target="_blank" rel="noopener noreferrer" class="text-accent underline hover:no-underline font-medium">Telegram: AI di Provincia</a></span>
     </p>
 
-    <NewsletterForm client:load />
+    <NewsletterForm client:load lang={lang as 'it' | 'en'} />
     
     <p class="mt-10 text-sm text-gray-400 font-mono italic">
-      Puoi disiscriverti in ogni momento. Rispetto la tua attenzione.
+      {t.unsub}
     </p>
   </div>
 </section>

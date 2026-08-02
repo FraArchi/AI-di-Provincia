@@ -17,6 +17,7 @@ const postsCollection = defineCollection({
     excerpt: z.string().optional(),
     cta_text: z.string().optional(),
     cta_image: image().optional(),
+    lang: z.enum(['it', 'en']).optional().default('it'),
   })
 });
 

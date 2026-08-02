@@ -10,11 +10,13 @@ export interface CategoryArticle {
 }
 
 interface NavigationProps {
-  currentPage: 'home' | 'about' | 'article';
+  currentPage: 'home' | 'about' | 'article' | 'manifesto' | 'margini-di-pagina' | 'glossario';
   rubriche: CategoryArticle[];
+  lang?: 'it' | 'en';
+  currentPath?: string;
 }
 
-export default function Navigation({ currentPage, rubriche }: NavigationProps) {
+export default function Navigation({ currentPage, rubriche, lang = 'it', currentPath }: NavigationProps) {
   const [isRubricheOpen, setIsRubricheOpen] = useState(false);
 
   return (
@@ -22,11 +24,14 @@ export default function Navigation({ currentPage, rubriche }: NavigationProps) {
       <Header 
         currentPage={currentPage} 
         onOpenRubriche={() => setIsRubricheOpen(true)} 
+        lang={lang}
+        currentPath={currentPath}
       />
       <RubricheSidebar 
         isOpen={isRubricheOpen} 
         onClose={() => setIsRubricheOpen(false)} 
         rubriche={rubriche}
+        lang={lang}
       />
     </>
   );

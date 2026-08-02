@@ -1,14 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation';
-import { getRubriche } from '../lib/utils';
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import { getRubriche } from '../../lib/utils';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import { Image } from 'astro:assets';
 
-const rubriche = await getRubriche('it');
+const rubriche = await getRubriche('en');
 const posts = await getCollection('posts', ({ id, data }) => {
-  return !(id.startsWith('en/') || data.lang === 'en');
+  return id.startsWith('en/') || data.lang === 'en';
 });
 
 const sortedPosts = posts.sort((a, b) => new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf());
@@ -22,21 +22,21 @@ const sidebarFeaturedPosts = sortedPosts
 
 const formatDate = (dateString: string | Date) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('it-IT', {
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
 };
 
-const getExcerpt = (body: string) => {
-  const parts = body.split('\n\n').slice(0, 3).join('\n\n');
-  return marked.parse(parts);
+const getPostUrl = (article: any) => {
+  const slug = article.data.slug || article.id.replace(/^en\//, '');
+  return `/en/post/${slug}`;
 };
 ---
 
-<Layout title="AI di Provincia">
-  <Navigation client:load currentPage="home" rubriche={rubriche} />
+<Layout title="AI di Provincia - Home">
+  <Navigation client:load currentPage="home" rubriche={rubriche} lang="en" currentPath={Astro.url.pathname} />
   
   <main class="flex-grow">
     <div class="bg-white">
@@ -46,7 +46,7 @@ const getExcerpt = (body: string) => {
             AI di Provincia
           </h1>
           <p class="text-xl text-gray-600">
-            L'intelligenza artificiale vista da chi vive lontano dai centri tecnologici
+            Artificial intelligence seen by those living far from major tech hubs
           </p>
         </div>
 
@@ -59,7 +59,7 @@ const getExcerpt = (body: string) => {
             )}
             
             {featuredArticle.data.cover && (
-              <a href={`/post/${featuredArticle.data.slug || featuredArticle.id}`} class="block mb-6 overflow-hidden rounded-xl shadow-sm border border-gray-100 group">
+              <a href={getPostUrl(featuredArticle)} class="block mb-6 overflow-hidden rounded-xl shadow-sm border border-gray-100 group">
                 <Image 
                   src={featuredArticle.data.cover} 
                   alt={featuredArticle.data.title} 
@@ -69,7 +69,7 @@ const getExcerpt = (body: string) => {
             )}
 
             <h2 class="text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight hover:text-accent transition-colors">
-              <a href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}>
+              <a href={getPostUrl(featuredArticle)}>
                 {featuredArticle.data.title}
               </a>
             </h2>
@@ -89,10 +89,10 @@ const getExcerpt = (body: string) => {
             </div>
 
             <a
-              href={`/post/${featuredArticle.data.slug || featuredArticle.id}`}
+              href={getPostUrl(featuredArticle)}
               class="inline-block text-accent font-medium hover:underline transition-colors"
             >
-              Leggi l'articolo completo &rarr;
+              Read full article &rarr;
             </a>
           </article>
         )}
@@ -102,12 +102,12 @@ const getExcerpt = (body: string) => {
             
             {/* Feed Centrale (Articoli Principali) - 2/3 width */}
             <div class="md:col-span-2">
-              <h3 class="text-xl font-bold font-serif text-gray-900 mb-8 border-b pb-2">Articoli Recenti</h3>
+              <h3 class="text-xl font-bold font-serif text-gray-900 mb-8 border-b pb-2">Recent Articles</h3>
               <div class="grid sm:grid-cols-2 gap-8">
                 {otherArticles.filter(a => a.data.category !== "Il Bollettino dell'IA").map((article) => (
                   <article class="group">
                     <a
-                      href={`/post/${article.data.slug || article.id}`}
+                      href={getPostUrl(article)}
                       class="text-left w-full block"
                     >
                       {article.data.cover && (
@@ -141,16 +141,16 @@ const getExcerpt = (body: string) => {
               </div>
             </div>
 
-            {/* Sidebar Laterale (I preferiti) - 1/3 width */}
+            {/* Sidebar Laterale (Favorites) - 1/3 width */}
             <div class="md:col-span-1 bg-gray-50 p-6 rounded-xl border border-gray-100">
               <h3 class="text-lg font-bold font-serif text-gray-900 mb-6 flex items-center gap-2">
-                <span class="text-accent">★</span> I preferiti
+                <span class="text-accent">★</span> Favorites
               </h3>
               <div class="space-y-6">
                 {sidebarFeaturedPosts.map((article) => (
                   <article class="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
                      <a
-                      href={`/post/${article.data.slug || article.id}`}
+                      href={getPostUrl(article)}
                       class="text-left w-full group flex gap-4 items-start"
                     >
                       {article.data.cover && (
@@ -182,7 +182,7 @@ const getExcerpt = (body: string) => {
                 ))}
                 
                 {sidebarFeaturedPosts.length === 0 && (
-                  <p class="text-sm text-gray-500 italic">Nessun articolo preferito.</p>
+                  <p class="text-sm text-gray-500 italic">No favorite articles.</p>
                 )}
               </div>
             </div>

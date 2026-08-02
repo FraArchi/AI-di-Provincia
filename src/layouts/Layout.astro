@@ -9,18 +9,25 @@ interface Props {
   image?: string;
 }
 
+const lang = Astro.currentLocale || 'it';
+
+const defaultDesc = lang === 'en'
+  ? "Artificial intelligence seen from Alta Irpinia. Stories, reflections, and reporting on AI from the Italian province."
+  : "Intelligenza artificiale vista dall'Alta Irpinia. Storie, riflessioni e reportage sull'IA dalla provincia italiana.";
+
 const { 
   title, 
-  description = "Intelligenza artificiale vista dall'Alta Irpinia. Storie, riflessioni e reportage sull'IA dalla provincia italiana.",
+  description = defaultDesc,
   image
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : new URL('/images/og-image.png', Astro.site);
+const ogLocale = lang === 'en' ? 'en_US' : 'it_IT';
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X4D4YFSFP"></script>
@@ -43,7 +50,7 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/images/og-image.p
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="it_IT" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image" />

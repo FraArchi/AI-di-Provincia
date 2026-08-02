@@ -12,6 +12,13 @@ export default defineConfig({
   security: {
     checkOrigin: false,
   },
+  i18n: {
+    defaultLocale: 'it',
+    locales: ['it', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    }
+  },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import { getRubriche } from '../../lib/utils';
+
+const rubriche = await getRubriche('en');
+
+const exercises = [
+  {
+    id: "01",
+    title: "The first page ritual",
+    description: "Do not start reading unless you have at least 20 minutes of guaranteed silence. Turn off your phone or leave it in another room. The Page Margins section begins with an act of separation."
+  },
+  {
+    id: "02",
+    title: "The analog notebook",
+    description: "Read with a pen in hand. Underline not what is important, but what resonates within you. Write your doubts, your angers, your joys in the margins. Turn the book into a dialogue."
+  },
+  {
+    id: "03",
+    title: "The single paragraph exercise",
+    description: "Choose a particularly dense paragraph. Read it three times. The first to understand what it says. The second to understand how it says it. The third to let it settle without trying to understand anything."
+  },
+  {
+    id: "04",
+    title: "The landscape pause",
+    description: "Every 10 pages, close the book. Look out the window. Do not think about what you have read. Let your brain make its invisible connections while you observe the real world."
+  },
+  {
+    id: "05",
+    title: "The algorithmic contrast",
+    description: "After reading a difficult chapter, try asking an AI to summarize it. Notice what is missing from the summary: your emotion will be missing, your personal memory associated with a word, the weight of silence between the lines. That void is your humanity."
+  },
+  {
+    id: "06",
+    title: "Rereading as fidelity",
+    description: "Books that matter are not just read, they are reread. Choose a book that changed your life five years ago. Read it again now. You will see that the book has remained the same, but you have become a different reader."
+  }
+];
+---
+
+<Layout title="Page Margins - AI di Provincia">
+  <Navigation client:load currentPage="margini-di-pagina" rubriche={rubriche} lang="en" currentPath={Astro.url.pathname} />
+  
+  <main class="flex-grow bg-gray-50 py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-white p-12 md:p-20 shadow-xl rounded-2xl border border-gray-100 relative overflow-hidden text-center">
+        {/* Decorative Element */}
+        <div class="absolute top-0 left-0 w-full h-2 bg-accent opacity-50"></div>
+        
+        <div class="mb-16">
+          <span class="text-accent font-mono text-sm uppercase tracking-[0.3em] mb-4 block">Practice of Slowness</span>
+          <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
+            Page Margins
+          </h1>
+          <p class="text-xl text-gray-600 italic max-w-2xl mx-auto">
+            A guide to depth in the age of fragmented attention
+          </p>
+        </div>
+
+        <div class="space-y-16 text-left">
+          {exercises.map((ex) => (
+            <section class="group">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs font-mono text-accent/60 border border-accent/20 px-2 py-1 rounded">EXERCISE {ex.id}</span>
+                <div class="h-px flex-grow bg-gray-100"></div>
+              </div>
+              <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4 group-hover:text-accent transition-colors">
+                {ex.title}
+              </h3>
+              <p class="text-gray-700 leading-relaxed text-lg">
+                {ex.description}
+              </p>
+            </section>
+          ))}
+        </div>
+
+        <div class="mt-24 pt-12 border-t border-gray-100">
+          <p class="text-sm font-mono text-gray-400 uppercase tracking-widest mb-8">
+            Cultivate your Substratum &middot; Slow down
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/en/manifesto" class="text-gray-600 hover:text-gray-900 font-medium">
+              &larr; Read the Manifesto
+            </a>
+            <span class="hidden sm:block text-gray-300">|</span>
+            <a href="/en" class="text-accent hover:underline font-medium">
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

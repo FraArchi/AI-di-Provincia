@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import { getRubriche } from '../../lib/utils';
+import { ArrowLeft } from 'lucide-react';
+
+const rubriche = await getRubriche('en');
+---
+
+<Layout title="About - AI di Provincia">
+  <Navigation client:load currentPage="about" rubriche={rubriche} lang="en" currentPath={Astro.url.pathname} />
+  
+  <main class="flex-grow">
+    <div class="bg-white">
+      <div class="max-w-3xl mx-auto px-6 py-16">
+        <a
+          href="/en"
+          class="text-sm text-gray-600 hover:text-accent transition-colors flex items-center gap-2 mb-12 inline-flex"
+        >
+          <ArrowLeft size={16} />
+          Back to home
+        </a>
+
+        <article>
+          <h1 class="text-5xl font-serif font-bold text-gray-900 mb-8 leading-tight">
+            About me
+          </h1>
+
+          <div class="space-y-6 text-lg text-gray-800 leading-relaxed">
+            <p>
+              My name is Francesco. I am not an AI expert, I don't work in a tech company, I don't live in Milan or San Francisco. I live in the province, in front of a computer, and I have been using AI every day for almost five years.
+            </p>
+
+            <p>
+              I didn't study it. I lived it — since I was a kid, when ChatGPT had just come out and almost nobody was talking about it yet. Over time it became a daily, almost unconscious presence. Like checking the weather, but more useful.
+            </p>
+
+            <p>
+              At one point I realized something: I knew more than I thought. Not in an academic way, not with certifications or courses. But with something that is worth just as much — the experience of someone who was there from the beginning and followed everything, day by day, without anyone having asked.
+            </p>
+
+            <p>
+              AI di Provincia was born from that awareness. And from a simple question: why is it always discussed among insiders, gurus, and doomsdayers — and never among normal people?
+            </p>
+
+            <p>
+              This space is for those who heard about AI on the news and don't know where to start. For those who already use it but don't feel "expert enough" to say so. For those who live far from tech hubs but want to understand anyway.
+            </p>
+
+            <p>
+              I write for myself, first of all. But I hope that something of what I write belongs a bit to you too.
+            </p>
+
+            <p class="font-semibold">
+              — Francesco Archidiacono
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+</Layout>
